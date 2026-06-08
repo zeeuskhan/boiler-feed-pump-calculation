@@ -32,10 +32,29 @@
   body {
     background: #FFFFFF !important;
     color: #111827 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
   
   .no-print {
     display: none !important;
+  }
+  
+  .print-only {
+    display: block !important;
+  }
+  
+  /* Ensure elements hidden on screen with tailwind .hidden are visible on print */
+  .hidden.print-only {
+    display: block !important;
+  }
+  
+  .hidden.print-only-grid {
+    display: grid !important;
+  }
+  
+  .hidden.print-only-flex {
+    display: flex !important;
   }
   
   .print-card {
@@ -56,6 +75,12 @@
   
   .print-border {
     border: 1px solid #E5E7EB !important;
+  }
+
+  table.print-border,
+  .print-border th,
+  .print-border td {
+    border: 1px solid #D1D5DB !important;
   }
 }
 

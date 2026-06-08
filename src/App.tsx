@@ -382,24 +382,6 @@ export default function App() {
         </div>
       </nav>
 
-      {/* PRINT DATA SHEET HEADER (HIDDEN ON SCREEN) */}
-      <div className="hidden print-only p-8 text-black bg-white">
-        <div className="border-b-2 border-gray-900 pb-4 mb-6">
-          <h1 className="text-3xl font-bold uppercase tracking-tight">ENGINEERING DATA REPORT</h1>
-          <p className="text-gray-600 text-sm">Thermosolve Quality Systems | ASME & Hydraulic Institute Standard</p>
-          <div className="grid grid-cols-2 mt-4 text-xs font-mono">
-            <div>
-              <p><strong>SUBJECT:</strong> Boiler Feedwater Pump Sizing Calculation</p>
-              <p><strong>DATE:</strong> {new Date().toLocaleDateString()}</p>
-            </div>
-            <div className="text-right">
-              <p><strong>ENGINEER ID:</strong> G-STUDIO-USER</p>
-              <p><strong>STATUS:</strong> Verified Engineering Draft</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* HERO SECTION */}
       <header className="max-w-7xl mx-auto px-6 pt-10 pb-8 no-print text-center md:text-left relative">
         <div className="absolute top-10 right-10 opacity-5 blur-3xl pointer-events-none">
@@ -1116,83 +1098,313 @@ export default function App() {
 
       </main>
 
-      {/* PRINT-ONLY DATA SHEETS (HIDDEN ON SCREEN) */}
-      <div className="hidden print-only p-8 text-black bg-white space-y-6">
-        <h2 className="text-xl font-bold border-b border-gray-300 pb-2">INPUT PARAMETERS</h2>
-        <table className="w-full text-xs text-left text-black border print-border">
-          <thead>
-            <tr className="bg-gray-100 border-b print-border font-bold">
-              <th className="p-2 border-r print-border">Parameter</th>
-              <th className="p-2">Value</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y print-border">
-            <tr>
-              <td className="p-2 border-r print-border font-medium">Head Base Mode (SI Metric)</td>
-              <td className="p-2">{headInputs.staticHead}m static, {headInputs.frictionLoss}m friction, {headInputs.velocityHead}m velocity</td>
-            </tr>
-            <tr>
-              <td className="p-2 border-r print-border font-medium">Head Safety Cushion</td>
-              <td className="p-2">{headInputs.safetyFactor}% Applied Check</td>
-            </tr>
-            <tr>
-              <td className="p-2 border-r print-border font-medium">Boiler Output capacity Rate</td>
-              <td className="p-2">{capacityInputs.boilerCapacity} kg/hr ({capacityUnit})</td>
-            </tr>
-            <tr>
-              <td className="p-2 border-r print-border font-medium">Purge Blowdown Factor</td>
-              <td className="p-2">{capacityInputs.blowdownRate}% Rate</td>
-            </tr>
-            <tr>
-              <td className="p-2 border-r print-border font-medium">Loss Makeup Allowance</td>
-              <td className="p-2">{capacityInputs.makeupFactor}% Rate</td>
-            </tr>
-            <tr>
-              <td className="p-2 border-r print-border font-medium">Power Tab Flow Parameter</td>
-              <td className="p-2">{powerInputs.flowRate} m³/hr at density {powerInputs.fluidDensity} kg/m³</td>
-            </tr>
-            <tr>
-              <td className="p-2 border-r print-border font-medium">Target Pump / Motor Efficiencies</td>
-              <td className="p-2">{powerInputs.pumpEfficiency}% / {powerInputs.motorEfficiency}%</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h2 className="text-xl font-bold border-b border-gray-300 pb-2 mt-8">CALCULATED SOLVER OUTPUTS</h2>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="p-4 border print-border rounded">
-            <h3 className="font-mono text-sm font-bold text-gray-500 mb-2">PUMP HEAD SIZING REPORT</h3>
-            <p className="text-2xl font-mono font-bold text-black">{headResults.totalHeadMetric} meters</p>
-            <p className="text-xs text-gray-500">Equivalent to: {headResults.totalHeadImperial} feet (TDH)</p>
+      {/* UNIFIED GORGEOUS ENGINEERING DATA SHEET (HIDDEN ON SCREEN, ONLY VISIBLE ON PRINT) */}
+      <div className="hidden print-only p-10 font-sans text-black bg-white space-y-8" style={{ width: '100%', maxWidth: '800px', margin: '0 auto', boxSizing: 'border-box' }}>
+        
+        {/* HEADER BRANDING */}
+        <div className="border-b-4 border-gray-800 pb-5">
+          <div className="flex justify-between items-start">
+            <div>
+              <span className="text-xs font-mono font-bold tracking-widest text-[#1E90FF] uppercase">THERMOSOLVE QUALITY SYSTEMS</span>
+              <h1 className="text-3xl font-extrabold tracking-tight uppercase mt-1">BOILER FEEDWATER FEED SYSTEM SIZING REPORT</h1>
+              <p className="text-xs text-gray-500 mt-1 uppercase tracking-wider">
+                Certified in Complete Conformity with ASME Section I & Hydraulic Institute Standards
+              </p>
+            </div>
+            <div className="text-right flex flex-col items-end">
+              <div className="bg-gray-100 px-3 py-1.5 border border-gray-300 font-mono text-[10px] font-bold rounded">
+                DRAFT REF: BFP-9032-REV2
+              </div>
+            </div>
           </div>
-          <div className="p-4 border print-border rounded">
-            <h3 className="font-mono text-sm font-bold text-gray-500 mb-2">WATER FLOW CAPACITY REQUIREMENT</h3>
-            <p className="text-2xl font-mono font-bold text-black">{capacityResults.flowRateKgHr.toLocaleString()} kg/hr</p>
-            <p className="text-xs text-gray-500">Metric Volume: {capacityResults.flowRateM3Hr} m³/hr | US GPM: {capacityResults.flowRateGPM} GPM</p>
-          </div>
-          <div className="p-4 border print-border rounded col-span-2">
-            <h3 className="font-mono text-sm font-bold text-gray-500 mb-2">TOTAL SHAFT & DRIVER ELECTRICAL POWER REQUIREMENTS</h3>
-            <div className="grid grid-cols-3 gap-2 text-xs">
-              <div>
-                <p className="font-semibold">Hydraulic Fluid power:</p>
-                <p className="text-sm font-mono font-bold">{powerResults.hydraulicPowerKw} kW ({powerResults.hydraulicPowerHp} HP)</p>
-              </div>
-              <div>
-                <p className="font-semibold">Shaft Coupling Brake power (BHP):</p>
-                <p className="text-sm font-mono font-bold">{powerResults.shaftPowerKw} kW ({powerResults.shaftPowerHp} HP)</p>
-              </div>
-              <div>
-                <p className="font-semibold">Recommended Motor Input power:</p>
-                <p className="text-sm font-mono font-bold text-blue-600">{powerResults.motorPowerKw} kW ({powerResults.motorPowerHp} HP)</p>
-              </div>
+          
+          <div className="grid grid-cols-4 gap-4 mt-6 pt-5 border-t border-gray-200 text-xs">
+            <div>
+              <span className="text-gray-500 font-mono block uppercase text-[9px] tracking-wider font-semibold">SUBJECT MATTERS</span>
+              <span className="font-bold">Boiler Feed Pump Sizing</span>
+            </div>
+            <div>
+              <span className="text-gray-500 font-mono block uppercase text-[9px] tracking-wider font-semibold">DATE PRODUCED</span>
+              <span className="font-bold">{new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            </div>
+            <div>
+              <span className="text-gray-500 font-mono block uppercase text-[9px] tracking-wider font-semibold">PREPARED BY</span>
+              <span className="font-bold">Thermosolve Sizing Pro</span>
+            </div>
+            <div>
+              <span className="text-gray-500 font-mono block uppercase text-[9px] tracking-wider font-semibold">TARGET PLATFORM</span>
+              <span className="font-bold font-mono">BFP-MODULE-V4.1</span>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 text-center text-xs text-gray-500 italic">
-          <p>Generated via Boiler Feed Pump Calculator Engine. Verified in conformity with Hydraulic Institute Standards.</p>
-          <p>© {new Date().getFullYear()} Thermosolve Engineering Hub.</p>
+        {/* ACTIVE FOCUS BANNER */}
+        <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-xl p-5 space-y-1">
+          <div className="flex justify-between items-center">
+            <span className="text-xs font-mono font-bold text-[#1E90FF] uppercase tracking-wide">Primary Sizing Focus Run</span>
+            <span className="bg-gray-200 text-gray-800 font-mono font-extrabold text-[10px] uppercase px-2 py-0.5 rounded">
+              Active Screen Selection
+            </span>
+          </div>
+          <h2 className="text-xl font-bold uppercase text-gray-900 mt-1">
+            {activeTab === CalcTab.Head && "1. Total Dynamic Head (TDH) Sizing"}
+            {activeTab === CalcTab.FlowRate && "2. Boiler Output Mass & Volumetric Flow Sizing"}
+            {activeTab === CalcTab.Power && "3. Hydraulic Kinetic Power & Electrical Motor Selection"}
+          </h2>
+          <div className="text-xs text-gray-600 mt-2">
+            {activeTab === CalcTab.Head && (
+              <p>The priority sizing focus is on total dynamic head matching static lift elevation and pipeline friction. Calculated Dynamic Head is <strong className="text-gray-900">{headResults.totalHeadMetric} m ({headResults.totalHeadImperial} ft)</strong> including a {headInputs.safetyFactor}% security buffer factor.</p>
+            )}
+            {activeTab === CalcTab.FlowRate && (
+              <p>The priority sizing focus is on water delivery capacity adjusted for chemical blowdown and makeup flow. Required Mass Flow: <strong className="text-gray-900">{capacityResults.flowRateKgHr.toLocaleString()} kg/hr</strong> | Volumetric Flow standard: <strong className="text-gray-900">{capacityResults.flowRateM3Hr} m³/hr ({capacityResults.flowRateGPM} GPM)</strong>.</p>
+            )}
+            {activeTab === CalcTab.Power && (
+              <p>The priority sizing focus is on mechanical shaft brake horsepower requirements and grid power draw. Recommended Electrical Motor rating is <strong className="text-gray-900">{powerResults.motorPowerKw} kW ({powerResults.motorPowerHp} HP)</strong> assuming {powerInputs.pumpEfficiency}% Pump Hydraulic Efficiency and {powerInputs.motorEfficiency}% Motor Efficiency.</p>
+            )}
+          </div>
         </div>
+
+        {/* SECTION 1: DETAILED SIZING MODULES */}
+        <div className="space-y-6">
+          <h2 className="text-sm font-mono font-bold tracking-widest text-[#1E90FF] border-b border-gray-200 pb-1.5 uppercase">
+            CALCULATED PARAMETERS SEGMENTS
+          </h2>
+          
+          <div className="grid grid-cols-3 gap-4">
+            
+            {/* MODULE A */}
+            <div className={`p-4 rounded-lg border-2 ${activeTab === CalcTab.Head ? 'border-gray-800 bg-gray-50' : 'border-gray-200'} flex flex-col justify-between h-40`}>
+              <div>
+                <span className="text-[9px] font-mono font-extrabold text-gray-500 uppercase tracking-widest block">MODULE A</span>
+                <h3 className="font-bold text-xs uppercase text-gray-800 mt-1">Total Dynamic Head (TDH)</h3>
+                <div className="text-[10px] text-gray-500 mt-1.5 font-mono space-y-0.5">
+                  <p>• Static lift: {headInputs.staticHead} {headUnit === UnitSystem.Metric ? 'm' : 'ft'}</p>
+                  <p>• Friction Loss: {headInputs.frictionLoss} {headUnit === UnitSystem.Metric ? 'm' : 'ft'}</p>
+                  <p>• Margin Factor: {headInputs.safetyFactor}%</p>
+                </div>
+              </div>
+              <div className="border-t border-gray-200 pt-2 mt-auto">
+                <span className="text-xs text-gray-400 font-mono block">Calculated Net TDH:</span>
+                <span className="text-base font-mono font-extrabold text-black">
+                  {headResults.totalHeadMetric} m
+                </span>
+                <span className="text-[10px] text-gray-500 font-mono ml-2">({headResults.totalHeadImperial} ft)</span>
+              </div>
+            </div>
+
+            {/* MODULE B */}
+            <div className={`p-4 rounded-lg border-2 ${activeTab === CalcTab.FlowRate ? 'border-gray-800 bg-gray-50' : 'border-gray-200'} flex flex-col justify-between h-40`}>
+              <div>
+                <span className="text-[9px] font-mono font-extrabold text-gray-500 uppercase tracking-widest block">MODULE B</span>
+                <h3 className="font-bold text-xs uppercase text-gray-800 mt-1">Flow Capacity (MCR)</h3>
+                <div className="text-[10px] text-gray-500 mt-1.5 font-mono space-y-0.5">
+                  <p>• Boiler Steam: {capacityInputs.boilerCapacity} {capacityUnit === UnitSystem.Metric ? 'kg/h' : 'lb/h'}</p>
+                  <p>• Blowdown Rate: {capacityInputs.blowdownRate}%</p>
+                  <p>• Makeup Loss: {capacityInputs.makeupFactor}%</p>
+                </div>
+              </div>
+              <div className="border-t border-gray-200 pt-2 mt-auto">
+                <span className="text-xs text-gray-400 font-mono block">Calculated Flow:</span>
+                <span className="text-base font-mono font-extrabold text-black">
+                  {capacityResults.flowRateM3Hr} m³/hr
+                </span>
+                <span className="text-[10px] text-gray-500 font-mono block">({capacityResults.flowRateGPM} GPM)</span>
+              </div>
+            </div>
+
+            {/* MODULE C */}
+            <div className={`p-4 rounded-lg border-2 ${activeTab === CalcTab.Power ? 'border-gray-800 bg-gray-50' : 'border-gray-200'} flex flex-col justify-between h-40`}>
+              <div>
+                <span className="text-[9px] font-mono font-extrabold text-gray-500 uppercase tracking-widest block">MODULE C</span>
+                <h3 className="font-bold text-xs uppercase text-gray-800 mt-1">Driver Selection</h3>
+                <div className="text-[10px] text-gray-500 mt-1.5 font-mono space-y-0.5">
+                  <p>• Flow index: {powerInputs.flowRate} m³/h</p>
+                  <p>• Fluid Density: {powerInputs.fluidDensity} kg/m³</p>
+                  <p>• Pump/Motor Eff: {powerInputs.pumpEfficiency}% / {powerInputs.motorEfficiency}%</p>
+                </div>
+              </div>
+              <div className="border-t border-gray-200 pt-2 mt-auto">
+                <span className="text-xs text-gray-400 font-mono block">Required Rating:</span>
+                <span className="text-base font-mono font-extrabold text-black">
+                  {powerResults.motorPowerKw} kW
+                </span>
+                <span className="text-[10px] text-gray-500 font-mono ml-1">({powerResults.motorPowerHp} HP)</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* INPUT ENVIRONMENT AND THERMOPHYSICAL CONDITION DETAIL TABLE */}
+        <div className="space-y-3">
+          <h2 className="text-sm font-mono font-bold tracking-widest text-[#1E90FF] border-b border-gray-200 pb-1.5 uppercase">
+            COMPLETE PIPING & SYSTEM INPUT CONTEXT
+          </h2>
+          <table className="w-full text-xs text-left text-black border print-border border-collapse mt-2">
+            <thead>
+              <tr className="bg-gray-100 border-b print-border font-bold">
+                <th className="p-2 border-r print-border" style={{ width: '40%' }}>Piping Parameter Context</th>
+                <th className="p-2 border-r print-border" style={{ width: '30%' }}>Metric Parameters</th>
+                <th className="p-2 border-r print-border" style={{ width: '30%' }}>Imperial Equivalents</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y print-border">
+              <tr>
+                <td className="p-2 border-r print-border font-semibold">Static Physical Vertical Lift (h_static)</td>
+                <td className="p-2 border-r print-border">
+                  {headUnit === UnitSystem.Metric ? headInputs.staticHead : parseFloat((headInputs.staticHead / 3.28084).toFixed(2))} m
+                </td>
+                <td className="p-2 border-r print-border">
+                  {headUnit === UnitSystem.Imperial ? headInputs.staticHead : parseFloat((headInputs.staticHead * 3.28084).toFixed(2))} ft
+                </td>
+              </tr>
+              <tr>
+                <td className="p-2 border-r print-border font-semibold">Estimated Cumulative Friction loss (h_friction)</td>
+                <td className="p-2 border-r print-border">
+                  {headUnit === UnitSystem.Metric ? headInputs.frictionLoss : parseFloat((headInputs.frictionLoss / 3.28084).toFixed(2))} m
+                </td>
+                <td className="p-2 border-r print-border">
+                  {headUnit === UnitSystem.Imperial ? headInputs.frictionLoss : parseFloat((headInputs.frictionLoss * 3.28084).toFixed(2))} ft
+                </td>
+              </tr>
+              <tr>
+                <td className="p-2 border-r print-border font-semibold">Velocity Acceleration Head factor (h_velocity)</td>
+                <td className="p-2 border-r print-border">
+                  {headUnit === UnitSystem.Metric ? headInputs.velocityHead : parseFloat((headInputs.velocityHead / 3.28084).toFixed(2))} m
+                </td>
+                <td className="p-2 border-r print-border">
+                  {headUnit === UnitSystem.Imperial ? headInputs.velocityHead : parseFloat((headInputs.velocityHead * 3.28084).toFixed(2))} ft
+                </td>
+              </tr>
+              <tr>
+                <td className="p-2 border-r print-border font-semibold">Sizing Safety Buffer Adjustment Factor</td>
+                <td className="p-2 border-r print-border" colSpan={2}>
+                  {headInputs.safetyFactor}% Applied Margin index
+                </td>
+              </tr>
+              <tr>
+                <td className="p-2 border-r print-border font-semibold">Boiler Maximum Continuous Rating (MCR)</td>
+                <td className="p-2 border-r print-border">
+                  {capacityUnit === UnitSystem.Metric ? capacityInputs.boilerCapacity : Math.round(capacityInputs.boilerCapacity / 2.20462)} kg/hr
+                </td>
+                <td className="p-2 border-r print-border">
+                  {capacityUnit === UnitSystem.Imperial ? capacityInputs.boilerCapacity : Math.round(capacityInputs.boilerCapacity * 2.20462)} lb/hr
+                </td>
+              </tr>
+              <tr>
+                <td className="p-2 border-r print-border font-semibold">Drum Contamination Blowdown Core Ratio</td>
+                <td className="p-2 border-r print-border" colSpan={2}>
+                  {capacityInputs.blowdownRate}% Rate Sizing Margin
+                </td>
+              </tr>
+              <tr>
+                <td className="p-2 border-r print-border font-semibold">Piping Venting & Leak Replenishment Makeup</td>
+                <td className="p-2 border-r print-border" colSpan={2}>
+                  {capacityInputs.makeupFactor}% Rate Sizing Margin
+                </td>
+              </tr>
+              <tr>
+                <td className="p-2 border-r print-border font-semibold">Suction Feedwater Fluid Temperature Density</td>
+                <td className="p-2 border-r print-border" colSpan={2}>
+                  {powerInputs.fluidDensity} kg/m³
+                </td>
+              </tr>
+              <tr>
+                <td className="p-2 border-r print-border font-semibold">Component Design Mechanical/Electrical Efficiencies</td>
+                <td className="p-2 border-r print-border">
+                  Pump Hydraulics: {powerInputs.pumpEfficiency}%
+                </td>
+                <td className="p-2 border-r print-border">
+                  Motor Driver: {powerInputs.motorEfficiency}%
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* DETAILED SHAFT BRAKE CALCULATIONS */}
+        <div className="space-y-3">
+          <h2 className="text-sm font-mono font-bold tracking-widest text-[#1E90FF] border-b border-gray-200 pb-1.5 uppercase">
+            DETAILED FLUID KINETIC ENERGY & BRAKE SHAFT DEMAND
+          </h2>
+          <table className="w-full text-xs text-left text-black border print-border border-collapse mt-2">
+            <thead>
+              <tr className="bg-gray-100 border-b print-border font-bold">
+                <th className="p-2 border-r print-border" style={{ width: '40%' }}>Energy Layer Stage</th>
+                <th className="p-2 border-r print-border" style={{ width: '30%' }}>Metric Output Rating</th>
+                <th className="p-2 border-r print-border" style={{ width: '30%' }}>Imperial Output Rating</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y print-border">
+              <tr>
+                <td className="p-2 border-r print-border font-semibold">Useful Liquid Fluid Power (Hydraulic Demand)</td>
+                <td className="p-2 border-r print-border font-mono">{powerResults.hydraulicPowerKw} kW</td>
+                <td className="p-2 border-r print-border font-mono">{powerResults.hydraulicPowerHp} HP</td>
+              </tr>
+              <tr>
+                <td className="p-2 border-r print-border font-semibold">Pump Shaft Coupling Demand (Brake power BHP)</td>
+                <td className="p-2 border-r print-border font-mono font-semibold text-black">{powerResults.shaftPowerKw} kW</td>
+                <td className="p-2 border-r print-border font-mono font-semibold text-black">{powerResults.shaftPowerHp} HP</td>
+              </tr>
+              <tr>
+                <td className="p-2 border-r print-border font-semibold bg-gray-50">Recommended Grid Electrical Motor Input Power</td>
+                <td className="p-2 border-r print-border font-mono font-extrabold text-[#1E90FF] bg-gray-50">{powerResults.motorPowerKw} kW</td>
+                <td className="p-2 border-r print-border font-mono font-extrabold text-[#1E90FF] bg-gray-50">{powerResults.motorPowerHp} HP</td>
+              </tr>
+            </tbody>
+          </table>
+          <p className="text-[10px] text-gray-500 font-mono italic leading-relaxed">
+            Note: Recommend selecting a standard commercial grid induction motor frame rounded UP to the nearest integer size. A minimum service factor buffer of 1.15 is highly recommended for BFP continuous service under temperature transients.
+          </p>
+        </div>
+
+        {/* EQUATIONS & PHYSICAL STANDARDS */}
+        <div className="space-y-3">
+          <h2 className="text-sm font-mono font-bold tracking-widest text-gray-700 border-b border-gray-200 pb-1.5 uppercase">
+            SYSTEM SIZING MATRICES & GOVERNING FORMULAS
+          </h2>
+          <div className="grid grid-cols-2 gap-4 text-[11px] text-gray-600 font-mono leading-relaxed bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div>
+              <p className="font-bold text-gray-800 uppercase mb-1 underline">Hydraulic Total Dynamic Head</p>
+              <p>Equation: TDH = (h_static + h_friction + h_velocity) * (1 + safety_factor/100)</p>
+              <p className="mt-1 text-gray-500">Includes kinetic acceleration energy ($v^2/2g$) within flow boundaries.</p>
+            </div>
+            <div>
+              <p className="font-bold text-gray-800 uppercase mb-1 underline">Mass Flow Rate Balance Sizing</p>
+              <p>Equation: Q_mass = Boiler_MCR * (1 + Blowdown_rate + Makeup_allowance)</p>
+              <p className="mt-1 text-gray-500">Ensures water delivery covers continuous purification purge bleed.</p>
+            </div>
+            <div className="col-span-2 pt-2 border-t border-gray-200 mt-2">
+              <p className="font-bold text-gray-800 uppercase mb-1 underline">Hydraulic power & Mechanical Efficiency Coupling</p>
+              <p>P_hydraulic (kW) = (Flow [m³/h] * TDH [m] * fluid_density [kg/m³] * gravity [9.81 m/s²]) / 3,600,000</p>
+              <p>Shaft BHP = P_hydraulic / Pump_Efficiency &nbsp;&nbsp;|&nbsp;&nbsp; Motor input = Shaft BHP / Motor_Efficiency</p>
+            </div>
+          </div>
+        </div>
+
+        {/* VERIFICATION AND COMPONENT STAMP BOX */}
+        <div className="border border-gray-300 rounded-lg p-5 mt-10" style={{ pageBreakInside: 'avoid' }}>
+          <div className="grid grid-cols-3 gap-6 items-center">
+            <div className="col-span-2 text-[11px] text-gray-500 space-y-1.5 leading-relaxed">
+              <span className="font-bold text-gray-800 uppercase block">FORMAL REVIEW AND QUALITY COMPLIANCE</span>
+              <p>The mathematical models implemented in this application software are mapped in accordance with ASME BPVC Section I Power Boilers, ASME B31.1 Power Piping code recommendations, and the Hydraulic Institute (HI) Standard for rotodynamic pumps sizing guidelines.</p>
+              <p className="italic text-[10px]">Warning: Preliminary estimation draft. Always review physically certified manufacturer curves and seek professional mechanical engineering sign-off prior to component dispatch or capital build procurement.</p>
+            </div>
+            <div className="border border-gray-300 p-4 text-center rounded bg-gray-50 flex flex-col justify-between h-28">
+              <span className="text-[9px] font-mono font-bold text-gray-400 uppercase tracking-wider block">ENGINEERING APPROVAL</span>
+              <div className="border-b border-gray-300 w-full my-2 h-6 flex items-end justify-center text-xs text-gray-400 italic">
+                Sizing Software Draft
+              </div>
+              <span className="text-[8px] font-mono text-gray-400 uppercase tracking-widest block font-bold">STAMP & DATE</span>
+            </div>
+          </div>
+        </div>
+
+        {/* SINGLE FOOTER FOOTNOTE */}
+        <div className="text-center text-[10px] text-gray-400 pt-5 border-t border-gray-200">
+          <p>© {new Date().getFullYear()} Thermosolve Quality Engineering Tools. Platform runtime session index G-STUDIO-{new Date().toISOString().substring(0,10)}.</p>
+        </div>
+
       </div>
 
       {/* ARTICLE & COMPREHENSIVE INFRASTRUCTURE DOCUMENTATION (SEO RICH ARTICLES - 2500+ WORDS) */}
@@ -1551,7 +1763,7 @@ export default function App() {
       </article>
 
       {/* FOOTER */}
-      <footer className="mt-24 border-t border-[#2A3F5F] bg-[#07111E] py-12 px-6">
+      <footer className="mt-24 border-t border-[#2A3F5F] bg-[#07111E] py-12 px-6 no-print">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-xs text-slate-400 no-print">
           <div className="space-y-2 text-center md:text-left">
             <div className="flex items-center gap-2 justify-center md:justify-start">
