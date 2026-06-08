@@ -83,6 +83,13 @@ export default function App() {
   // FAQ state tracking
   const [openFaq, setOpenFaq] = useState<string | null>('faq-1');
 
+  // Parse custom number inputs so empty entries display beautifully instead of forcing a 0
+  const parseNumInput = (value: string): number | "" => {
+    if (value === "") return "";
+    const parsed = parseFloat(value);
+    return isNaN(parsed) ? 0 : parsed;
+  };
+
   // Trigger brief calculation loading animation for UX feedback
   useEffect(() => {
     setIsCalculating(true);
@@ -100,26 +107,26 @@ export default function App() {
     if (newSystem === UnitSystem.Imperial) {
       // Metric -> Imperial
       setHeadInputs(prev => ({
-        dischargePressure: parseFloat((prev.dischargePressure * 14.5038).toFixed(2)),
-        suctionPressure: parseFloat((prev.suctionPressure * 14.5038).toFixed(2)),
-        velocityHead: parseFloat((prev.velocityHead * 3.28084).toFixed(2)),
-        frictionSuction: parseFloat((prev.frictionSuction * 3.28084).toFixed(2)),
-        frictionDischarge: parseFloat((prev.frictionDischarge * 3.28084).toFixed(2)),
-        staticHead: parseFloat((prev.staticHead * 3.28084).toFixed(2)),
+        dischargePressure: prev.dischargePressure === "" ? "" : parseFloat((prev.dischargePressure * 14.5038).toFixed(2)),
+        suctionPressure: prev.suctionPressure === "" ? "" : parseFloat((prev.suctionPressure * 14.5038).toFixed(2)),
+        velocityHead: prev.velocityHead === "" ? "" : parseFloat((prev.velocityHead * 3.28084).toFixed(2)),
+        frictionSuction: prev.frictionSuction === "" ? "" : parseFloat((prev.frictionSuction * 3.28084).toFixed(2)),
+        frictionDischarge: prev.frictionDischarge === "" ? "" : parseFloat((prev.frictionDischarge * 3.28084).toFixed(2)),
+        staticHead: prev.staticHead === "" ? "" : parseFloat((prev.staticHead * 3.28084).toFixed(2)),
         safetyFactor: prev.safetyFactor,
       }));
 
       setCapacityInputs(prev => ({
-        boilerCapacity: Math.round(prev.boilerCapacity * 2.20462),
+        boilerCapacity: prev.boilerCapacity === "" ? "" : Math.round(prev.boilerCapacity * 2.20462),
         blowdownRate: prev.blowdownRate,
         safetyFactor: prev.safetyFactor,
-        feedwaterTemp: parseFloat(((prev.feedwaterTemp * 9/5) + 32).toFixed(1)),
+        feedwaterTemp: prev.feedwaterTemp === "" ? "" : parseFloat(((prev.feedwaterTemp * 9/5) + 32).toFixed(1)),
       }));
 
       setPowerInputs(prev => ({
-        flowRate: parseFloat((prev.flowRate * 4.402868).toFixed(2)),
-        totalHead: parseFloat((prev.totalHead * 3.28084).toFixed(2)),
-        fluidDensity: parseFloat((prev.fluidDensity * 0.062428).toFixed(4)),
+        flowRate: prev.flowRate === "" ? "" : parseFloat((prev.flowRate * 4.402868).toFixed(2)),
+        totalHead: prev.totalHead === "" ? "" : parseFloat((prev.totalHead * 3.28084).toFixed(2)),
+        fluidDensity: prev.fluidDensity === "" ? "" : parseFloat((prev.fluidDensity * 0.062428).toFixed(4)),
         pumpEfficiency: prev.pumpEfficiency,
         motorEfficiency: prev.motorEfficiency,
         mechanicalEfficiency: prev.mechanicalEfficiency,
@@ -129,26 +136,26 @@ export default function App() {
     } else {
       // Imperial -> Metric
       setHeadInputs(prev => ({
-        dischargePressure: parseFloat((prev.dischargePressure / 14.5038).toFixed(2)),
-        suctionPressure: parseFloat((prev.suctionPressure / 14.5038).toFixed(2)),
-        velocityHead: parseFloat((prev.velocityHead / 3.28084).toFixed(2)),
-        frictionSuction: parseFloat((prev.frictionSuction / 3.28084).toFixed(2)),
-        frictionDischarge: parseFloat((prev.frictionDischarge / 3.28084).toFixed(2)),
-        staticHead: parseFloat((prev.staticHead / 3.28084).toFixed(2)),
+        dischargePressure: prev.dischargePressure === "" ? "" : parseFloat((prev.dischargePressure / 14.5038).toFixed(2)),
+        suctionPressure: prev.suctionPressure === "" ? "" : parseFloat((prev.suctionPressure / 14.5038).toFixed(2)),
+        velocityHead: prev.velocityHead === "" ? "" : parseFloat((prev.velocityHead / 3.28084).toFixed(2)),
+        frictionSuction: prev.frictionSuction === "" ? "" : parseFloat((prev.frictionSuction / 3.28084).toFixed(2)),
+        frictionDischarge: prev.frictionDischarge === "" ? "" : parseFloat((prev.frictionDischarge / 3.28084).toFixed(2)),
+        staticHead: prev.staticHead === "" ? "" : parseFloat((prev.staticHead / 3.28084).toFixed(2)),
         safetyFactor: prev.safetyFactor,
       }));
 
       setCapacityInputs(prev => ({
-        boilerCapacity: Math.round(prev.boilerCapacity / 2.20462),
+        boilerCapacity: prev.boilerCapacity === "" ? "" : Math.round(prev.boilerCapacity / 2.20462),
         blowdownRate: prev.blowdownRate,
         safetyFactor: prev.safetyFactor,
-        feedwaterTemp: parseFloat(((prev.feedwaterTemp - 32) * 5/9).toFixed(1)),
+        feedwaterTemp: prev.feedwaterTemp === "" ? "" : parseFloat(((prev.feedwaterTemp - 32) * 5/9).toFixed(1)),
       }));
 
       setPowerInputs(prev => ({
-        flowRate: parseFloat((prev.flowRate / 4.402868).toFixed(2)),
-        totalHead: parseFloat((prev.totalHead / 3.28084).toFixed(2)),
-        fluidDensity: parseFloat((prev.fluidDensity / 0.062428).toFixed(1)),
+        flowRate: prev.flowRate === "" ? "" : parseFloat((prev.flowRate / 4.402868).toFixed(2)),
+        totalHead: prev.totalHead === "" ? "" : parseFloat((prev.totalHead / 3.28084).toFixed(2)),
+        fluidDensity: prev.fluidDensity === "" ? "" : parseFloat((prev.fluidDensity / 0.062428).toFixed(1)),
         pumpEfficiency: prev.pumpEfficiency,
         motorEfficiency: prev.motorEfficiency,
         mechanicalEfficiency: prev.mechanicalEfficiency,
@@ -161,13 +168,13 @@ export default function App() {
   // 1. Total Dynamic Head Sizing equations
   const headResults = useMemo<HeadResults>(() => {
     const isMetric = unitSystem === UnitSystem.Metric;
-    const Pd = headInputs.dischargePressure;
-    const Ps = headInputs.suctionPressure;
-    const Hv = headInputs.velocityHead;
-    const Hfs = headInputs.frictionSuction;
-    const Hfd = headInputs.frictionDischarge;
-    const Hz = headInputs.staticHead;
-    const SF = headInputs.safetyFactor / 100;
+    const Pd = Number(headInputs.dischargePressure) || 0;
+    const Ps = Number(headInputs.suctionPressure) || 0;
+    const Hv = Number(headInputs.velocityHead) || 0;
+    const Hfs = Number(headInputs.frictionSuction) || 0;
+    const Hfd = Number(headInputs.frictionDischarge) || 0;
+    const Hz = Number(headInputs.staticHead) || 0;
+    const SF = (Number(headInputs.safetyFactor) || 0) / 100;
 
     let diffPressureHead = 0;
     if (isMetric) {
@@ -205,10 +212,10 @@ export default function App() {
   // 2. Feedwater Capacity Flow equations with dynamic density temperature lookup
   const capacityResults = useMemo<CapacityResults>(() => {
     const isMetric = unitSystem === UnitSystem.Metric;
-    const cap = capacityInputs.boilerCapacity;
-    const blowdown = capacityInputs.blowdownRate;
-    const sf = capacityInputs.safetyFactor;
-    const temp = capacityInputs.feedwaterTemp;
+    const cap = Number(capacityInputs.boilerCapacity) || 0;
+    const blowdown = Number(capacityInputs.blowdownRate) || 0;
+    const sf = Number(capacityInputs.safetyFactor) || 0;
+    const temp = Number(capacityInputs.feedwaterTemp) || 0;
 
     // Convert temp to Celsius for high fidelity density formula
     const tempC = isMetric ? temp : (temp - 32) * 5/9;
@@ -250,12 +257,12 @@ export default function App() {
   // 3. Fluid Power demand and motor driver sizing equations
   const powerResults = useMemo<PowerResults>(() => {
     const isMetric = unitSystem === UnitSystem.Metric;
-    const flowVal = powerInputs.flowRate;
-    const headVal = powerInputs.totalHead;
-    const densityVal = powerInputs.fluidDensity;
-    const pEff = powerInputs.pumpEfficiency / 100;
-    const mEff = powerInputs.motorEfficiency / 100;
-    const mechEff = powerInputs.mechanicalEfficiency / 100;
+    const flowVal = Number(powerInputs.flowRate) || 0;
+    const headVal = Number(powerInputs.totalHead) || 0;
+    const densityVal = Number(powerInputs.fluidDensity) || 0;
+    const pEff = (Number(powerInputs.pumpEfficiency) || 0) / 100;
+    const mEff = (Number(powerInputs.motorEfficiency) || 0) / 100;
+    const mechEff = (Number(powerInputs.mechanicalEfficiency) || 0) / 100;
 
     // Internal standard Metric SI conversions
     const qM3 = isMetric ? flowVal : flowVal / 4.402868;
@@ -276,13 +283,13 @@ export default function App() {
     const systemEfficiency = pEff * mEff * mechEff * 100;
 
     const annualHours = 8000; // standard industrial continuous service run pattern
-    const annualCost = motorPowerKw * annualHours * powerInputs.powerRateCustom;
+    const annualCost = motorPowerKw * annualHours * (Number(powerInputs.powerRateCustom) || 0);
     const carbonEmissions = motorPowerKw * annualHours * 0.52; // 0.52 kg CO2 per kWh grid average
 
     // Specific Speed Ns = N * sqrt(Q) / H^0.75
     const qGpm = qM3 * 4.402868;
     const hFt = hMet * 3.28084;
-    const specificSpeed = powerInputs.motorRPM * Math.sqrt(qGpm) / Math.pow(Math.max(1, hFt), 0.75);
+    const specificSpeed = (Number(powerInputs.motorRPM) || 0) * Math.sqrt(qGpm) / Math.pow(Math.max(1, hFt), 0.75);
 
     return {
       hydraulicPowerKw: parseFloat(hydraulicPowerKw.toFixed(3)),
@@ -677,7 +684,7 @@ export default function App() {
                           type="number"
                           step="any"
                           value={headInputs.dischargePressure}
-                          onChange={(e) => setHeadInputs(prev => ({ ...prev, dischargePressure: parseFloat(e.target.value) || 0 }))}
+                          onChange={(e) => setHeadInputs(prev => ({ ...prev, dischargePressure: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition shadow-inner"
                         />
                         <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-slate-400 select-none">
@@ -698,7 +705,7 @@ export default function App() {
                           type="number"
                           step="any"
                           value={headInputs.suctionPressure}
-                          onChange={(e) => setHeadInputs(prev => ({ ...prev, suctionPressure: parseFloat(e.target.value) || 0 }))}
+                          onChange={(e) => setHeadInputs(prev => ({ ...prev, suctionPressure: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition"
                         />
                         <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-slate-400 select-none">
@@ -719,7 +726,7 @@ export default function App() {
                           type="number"
                           step="any"
                           value={headInputs.staticHead}
-                          onChange={(e) => setHeadInputs(prev => ({ ...prev, staticHead: parseFloat(e.target.value) || 0 }))}
+                          onChange={(e) => setHeadInputs(prev => ({ ...prev, staticHead: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition"
                         />
                         <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-slate-400 select-none">
@@ -740,7 +747,7 @@ export default function App() {
                           type="number"
                           step="any"
                           value={headInputs.velocityHead}
-                          onChange={(e) => setHeadInputs(prev => ({ ...prev, velocityHead: parseFloat(e.target.value) || 0 }))}
+                          onChange={(e) => setHeadInputs(prev => ({ ...prev, velocityHead: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition"
                         />
                         <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-slate-400 select-none">
@@ -761,7 +768,7 @@ export default function App() {
                           type="number"
                           step="any"
                           value={headInputs.frictionSuction}
-                          onChange={(e) => setHeadInputs(prev => ({ ...prev, frictionSuction: parseFloat(e.target.value) || 0 }))}
+                          onChange={(e) => setHeadInputs(prev => ({ ...prev, frictionSuction: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition shadow-inner"
                         />
                         <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-slate-400 select-none">
@@ -782,7 +789,7 @@ export default function App() {
                           type="number"
                           step="any"
                           value={headInputs.frictionDischarge}
-                          onChange={(e) => setHeadInputs(prev => ({ ...prev, frictionDischarge: parseFloat(e.target.value) || 0 }))}
+                          onChange={(e) => setHeadInputs(prev => ({ ...prev, frictionDischarge: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition shadow-inner"
                         />
                         <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-slate-400 select-none">
@@ -804,7 +811,7 @@ export default function App() {
                           max="40"
                           min="0"
                           value={headInputs.safetyFactor}
-                          onChange={(e) => setHeadInputs(prev => ({ ...prev, safetyFactor: parseFloat(e.target.value) || 0 }))}
+                          onChange={(e) => setHeadInputs(prev => ({ ...prev, safetyFactor: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition"
                         />
                         <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-[#FFB400] select-none">
@@ -832,7 +839,7 @@ export default function App() {
                           type="number"
                           step="any"
                           value={capacityInputs.boilerCapacity}
-                          onChange={(e) => setCapacityInputs(prev => ({ ...prev, boilerCapacity: parseFloat(e.target.value) || 0 }))}
+                          onChange={(e) => setCapacityInputs(prev => ({ ...prev, boilerCapacity: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition shadow-inner"
                         />
                         <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-slate-400 select-none">
@@ -855,7 +862,7 @@ export default function App() {
                           min="0"
                           step="any"
                           value={capacityInputs.blowdownRate}
-                          onChange={(e) => setCapacityInputs(prev => ({ ...prev, blowdownRate: parseFloat(e.target.value) || 0 }))}
+                          onChange={(e) => setCapacityInputs(prev => ({ ...prev, blowdownRate: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition shadow-inner"
                         />
                         <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-slate-400 select-none">
@@ -877,7 +884,7 @@ export default function App() {
                           max="50"
                           min="0"
                           value={capacityInputs.safetyFactor}
-                          onChange={(e) => setCapacityInputs(prev => ({ ...prev, safetyFactor: parseFloat(e.target.value) || 0 }))}
+                          onChange={(e) => setCapacityInputs(prev => ({ ...prev, safetyFactor: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition shadow-inner"
                         />
                         <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-slate-400 select-none">
@@ -898,7 +905,7 @@ export default function App() {
                           type="number"
                           step="any"
                           value={capacityInputs.feedwaterTemp}
-                          onChange={(e) => setCapacityInputs(prev => ({ ...prev, feedwaterTemp: parseFloat(e.target.value) || 0 }))}
+                          onChange={(e) => setCapacityInputs(prev => ({ ...prev, feedwaterTemp: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition"
                         />
                         <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-slate-400 select-none">
@@ -926,7 +933,7 @@ export default function App() {
                           type="number"
                           step="any"
                           value={powerInputs.flowRate}
-                          onChange={(e) => setPowerInputs(prev => ({ ...prev, flowRate: parseFloat(e.target.value) || 0 }))}
+                          onChange={(e) => setPowerInputs(prev => ({ ...prev, flowRate: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition shadow-inner"
                         />
                         <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-slate-400 select-none">
@@ -947,7 +954,7 @@ export default function App() {
                           type="number"
                           step="any"
                           value={powerInputs.totalHead}
-                          onChange={(e) => setPowerInputs(prev => ({ ...prev, totalHead: parseFloat(e.target.value) || 0 }))}
+                          onChange={(e) => setPowerInputs(prev => ({ ...prev, totalHead: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition shadow-inner"
                         />
                         <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-slate-400 select-none">
@@ -968,7 +975,7 @@ export default function App() {
                           type="number"
                           step="any"
                           value={powerInputs.fluidDensity}
-                          onChange={(e) => setPowerInputs(prev => ({ ...prev, fluidDensity: parseFloat(e.target.value) || 0 }))}
+                          onChange={(e) => setPowerInputs(prev => ({ ...prev, fluidDensity: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition shadow-inner"
                         />
                         <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-slate-400 select-none">
@@ -991,7 +998,7 @@ export default function App() {
                           min="1"
                           step="any"
                           value={powerInputs.pumpEfficiency}
-                          onChange={(e) => setPowerInputs(prev => ({ ...prev, pumpEfficiency: parseFloat(e.target.value) || 0 }))}
+                          onChange={(e) => setPowerInputs(prev => ({ ...prev, pumpEfficiency: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition"
                         />
                         <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-[#00C896] select-none">
@@ -1012,7 +1019,7 @@ export default function App() {
                           type="number"
                           step="any"
                           value={powerInputs.powerRateCustom}
-                          onChange={(e) => setPowerInputs(prev => ({ ...prev, powerRateCustom: parseFloat(e.target.value) || 0 }))}
+                          onChange={(e) => setPowerInputs(prev => ({ ...prev, powerRateCustom: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-4 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#FFB400] transition"
                         />
                         <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-slate-400 select-none">
@@ -1033,7 +1040,7 @@ export default function App() {
                           type="number"
                           step="any"
                           value={powerInputs.motorRPM}
-                          onChange={(e) => setPowerInputs(prev => ({ ...prev, motorRPM: parseFloat(e.target.value) || 0 }))}
+                          onChange={(e) => setPowerInputs(prev => ({ ...prev, motorRPM: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-4 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition"
                         />
                         <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-slate-400 select-none">
@@ -1356,17 +1363,17 @@ export default function App() {
       <section className="max-w-7xl mx-auto px-6 mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 no-print">
         <SystemDiagram
           unitSystem={unitSystem}
-          dischargePressure={headInputs.dischargePressure}
-          suctionPressure={headInputs.suctionPressure}
-          staticHead={headInputs.staticHead}
-          frictionSuction={headInputs.frictionSuction}
-          frictionDischarge={headInputs.frictionDischarge}
-          velocityHead={headInputs.velocityHead}
+          dischargePressure={Number(headInputs.dischargePressure) || 0}
+          suctionPressure={Number(headInputs.suctionPressure) || 0}
+          staticHead={Number(headInputs.staticHead) || 0}
+          frictionSuction={Number(headInputs.frictionSuction) || 0}
+          frictionDischarge={Number(headInputs.frictionDischarge) || 0}
+          velocityHead={Number(headInputs.velocityHead) || 0}
         />
         <PumpCurveChart
           unitSystem={unitSystem}
-          operatingFlow={activeTab === CalcTab.Power ? powerInputs.flowRate : (unitSystem === UnitSystem.Metric ? capacityResults.flowM3Hr : capacityResults.flowGPM)}
-          operatingHead={activeTab === CalcTab.Power ? powerInputs.totalHead : (unitSystem === UnitSystem.Metric ? headResults.totalHeadMetric : headResults.totalHeadImperial)}
+          operatingFlow={activeTab === CalcTab.Power ? (Number(powerInputs.flowRate) || 0) : (unitSystem === UnitSystem.Metric ? capacityResults.flowM3Hr : capacityResults.flowGPM)}
+          operatingHead={activeTab === CalcTab.Power ? (Number(powerInputs.totalHead) || 0) : (unitSystem === UnitSystem.Metric ? headResults.totalHeadMetric : headResults.totalHeadImperial)}
         />
       </section>
 
@@ -1443,46 +1450,46 @@ export default function App() {
               <tr>
                 <td className="p-2 border-r print-border font-semibold">Working Discharge Pressure (Pd)</td>
                 <td className="p-2 border-r print-border">
-                  {unitSystem === UnitSystem.Metric ? headInputs.dischargePressure : parseFloat((headInputs.dischargePressure / 14.5038).toFixed(2))} bar
+                  {unitSystem === UnitSystem.Metric ? headInputs.dischargePressure : parseFloat((Number(headInputs.dischargePressure) / 14.5038).toFixed(2))} bar
                 </td>
                 <td className="p-2 border-r print-border">
-                  {unitSystem === UnitSystem.Imperial ? headInputs.dischargePressure : parseFloat((headInputs.dischargePressure * 14.5038).toFixed(2))} psi
+                  {unitSystem === UnitSystem.Imperial ? headInputs.dischargePressure : parseFloat((Number(headInputs.dischargePressure) * 14.5038).toFixed(2))} psi
                 </td>
               </tr>
               <tr>
                 <td className="p-2 border-r print-border font-semibold">Suction Tank Pressure (Ps)</td>
                 <td className="p-2 border-r print-border">
-                  {unitSystem === UnitSystem.Metric ? headInputs.suctionPressure : parseFloat((headInputs.suctionPressure / 14.5038).toFixed(2))} bar
+                  {unitSystem === UnitSystem.Metric ? headInputs.suctionPressure : parseFloat((Number(headInputs.suctionPressure) / 14.5038).toFixed(2))} bar
                 </td>
                 <td className="p-2 border-r print-border">
-                  {unitSystem === UnitSystem.Imperial ? headInputs.suctionPressure : parseFloat((headInputs.suctionPressure * 14.5038).toFixed(2))} psi
+                  {unitSystem === UnitSystem.Imperial ? headInputs.suctionPressure : parseFloat((Number(headInputs.suctionPressure) * 14.5038).toFixed(2))} psi
                 </td>
               </tr>
               <tr>
                 <td className="p-2 border-r print-border font-semibold">Static Physical Vertical Lift (Hz)</td>
                 <td className="p-2 border-r print-border">
-                  {unitSystem === UnitSystem.Metric ? headInputs.staticHead : parseFloat((headInputs.staticHead / 3.28084).toFixed(2))} m
+                  {unitSystem === UnitSystem.Metric ? headInputs.staticHead : parseFloat((Number(headInputs.staticHead) / 3.28084).toFixed(2))} m
                 </td>
                 <td className="p-2 border-r print-border">
-                  {unitSystem === UnitSystem.Imperial ? headInputs.staticHead : parseFloat((headInputs.staticHead * 3.28084).toFixed(2))} ft
+                  {unitSystem === UnitSystem.Imperial ? headInputs.staticHead : parseFloat((Number(headInputs.staticHead) * 3.28084).toFixed(2))} ft
                 </td>
               </tr>
               <tr>
                 <td className="p-2 border-r print-border font-semibold">Velocity Acceleration Head factor (ΔHv)</td>
                 <td className="p-2 border-r print-border">
-                  {unitSystem === UnitSystem.Metric ? headInputs.velocityHead : parseFloat((headInputs.velocityHead / 3.28084).toFixed(2))} m
+                  {unitSystem === UnitSystem.Metric ? headInputs.velocityHead : parseFloat((Number(headInputs.velocityHead) / 3.28084).toFixed(2))} m
                 </td>
                 <td className="p-2 border-r print-border">
-                  {unitSystem === UnitSystem.Imperial ? headInputs.velocityHead : parseFloat((headInputs.velocityHead * 3.28084).toFixed(2))} ft
+                  {unitSystem === UnitSystem.Imperial ? headInputs.velocityHead : parseFloat((Number(headInputs.velocityHead) * 3.28084).toFixed(2))} ft
                 </td>
               </tr>
               <tr>
                 <td className="p-2 border-r print-border font-semibold">Suction friction / Discharge friction</td>
                 <td className="p-2 border-r print-border">
-                  {unitSystem === UnitSystem.Metric ? `${headInputs.frictionSuction} m / ${headInputs.frictionDischarge} m` : `${(headInputs.frictionSuction / 3.28084).toFixed(1)} m / ${(headInputs.frictionDischarge / 3.28084).toFixed(1)} m`}
+                  {unitSystem === UnitSystem.Metric ? `${headInputs.frictionSuction} m / ${headInputs.frictionDischarge} m` : `${(Number(headInputs.frictionSuction) / 3.28084).toFixed(1)} m / ${(Number(headInputs.frictionDischarge) / 3.28084).toFixed(1)} m`}
                 </td>
                 <td className="p-2 border-r print-border">
-                  {unitSystem === UnitSystem.Imperial ? `${headInputs.frictionSuction} ft / ${headInputs.frictionDischarge} ft` : `${(headInputs.frictionSuction * 3.28084).toFixed(1)} ft / ${(headInputs.frictionDischarge * 3.28084).toFixed(1)} ft`}
+                  {unitSystem === UnitSystem.Imperial ? `${headInputs.frictionSuction} ft / ${headInputs.frictionDischarge} ft` : `${(Number(headInputs.frictionSuction) * 3.28084).toFixed(1)} ft / ${(Number(headInputs.frictionDischarge) * 3.28084).toFixed(1)} ft`}
                 </td>
               </tr>
               <tr>
@@ -1511,10 +1518,10 @@ export default function App() {
               <tr>
                 <td className="p-2 border-r print-border font-semibold">Boiler Evaporation Rate (MCR)</td>
                 <td className="p-2 border-r print-border">
-                  {unitSystem === UnitSystem.Metric ? capacityInputs.boilerCapacity : Math.round(capacityInputs.boilerCapacity / 2.20462)} kg/hr
+                  {unitSystem === UnitSystem.Metric ? capacityInputs.boilerCapacity : Math.round(Number(capacityInputs.boilerCapacity) / 2.20462)} kg/hr
                 </td>
                 <td className="p-2 border-r print-border">
-                  {unitSystem === UnitSystem.Imperial ? capacityInputs.boilerCapacity : Math.round(capacityInputs.boilerCapacity * 2.20462)} lb/hr
+                  {unitSystem === UnitSystem.Imperial ? capacityInputs.boilerCapacity : Math.round(Number(capacityInputs.boilerCapacity) * 2.20462)} lb/hr
                 </td>
               </tr>
               <tr>
