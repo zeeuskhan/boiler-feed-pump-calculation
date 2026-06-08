@@ -1,0 +1,6 @@
+{
+  "name": "Boiler Feed Pump Calculator",
+  "description": "Professional Boiler Feed Pump Calculation tool with real-time sizing, head, capacity, fluid power, and motor size calculation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
