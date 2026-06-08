@@ -1,0 +1,8 @@
+# https://www.robotstxt.org/
+# Google Webmaster Directives for boilerpumpcalc.vercel.app
+
+User-agent: *
+Allow: /
+
+# Sitemap Location
+Sitemap: https://boilerpumpcalc.vercel.app/sitemap.xml
