@@ -33,6 +33,7 @@ import {
   FAQItem,
   RelatedTool
 } from './types';
+import AdBanner from './components/AdBanner';
 
 export default function App() {
   // Active Tab
@@ -416,6 +417,11 @@ export default function App() {
           </div>
         </div>
       </header>
+
+      {/* Sponsor Banner Slot */}
+      <div className="max-w-7xl mx-auto px-6">
+        <AdBanner />
+      </div>
 
       {/* MAIN LAYOUT SECTION (CALCULATOR FRONT & CENTER) */}
       <main className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -1761,6 +1767,11 @@ export default function App() {
         </section>
 
       </article>
+
+      {/* Footer Banner Spot */}
+      <div className="max-w-7xl mx-auto px-6">
+        <AdBanner />
+      </div>
 
       {/* FOOTER */}
       <footer className="mt-24 border-t border-[#2A3F5F] bg-[#07111E] py-12 px-6 no-print">
