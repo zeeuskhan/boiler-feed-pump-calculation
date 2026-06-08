@@ -10,38 +10,50 @@ export enum CalcTab {
 }
 
 export interface HeadInputs {
-  unitSystem: UnitSystem;
-  staticHead: number; // m in Metric, ft in Imperial
-  frictionLoss: number; // m in Metric, ft in Imperial
+  dischargePressure: number; // bar in Metric, psi in Imperial
+  suctionPressure: number; // bar in Metric, psi in Imperial
   velocityHead: number; // m in Metric, ft in Imperial
-  safetyFactor: number; // percentage (e.g. 10)
+  frictionSuction: number; // m in Metric, ft in Imperial
+  frictionDischarge: number; // m in Metric, ft in Imperial
+  staticHead: number; // m in Metric, ft in Imperial
+  safetyFactor: number; // % margin
 }
 
 export interface CapacityInputs {
-  unitSystem: UnitSystem;
   boilerCapacity: number; // kg/hr in Metric, lb/hr in Imperial
-  blowdownRate: number; // % (e.g. 5)
-  makeupFactor: number; // % (e.g. 10)
+  blowdownRate: number; // %
+  safetyFactor: number; // %
+  feedwaterTemp: number; // °C in Metric, °F in Imperial
 }
 
 export interface PowerInputs {
-  flowRate: number; // m3/hr
-  totalHead: number; // meters
-  fluidDensity: number; // kg/m3 (default 1000)
-  pumpEfficiency: number; // % (e.g. 75)
-  motorEfficiency: number; // % (e.g. 90)
+  flowRate: number; // m3/hr standard
+  totalHead: number; // meters standard
+  fluidDensity: number; // kg/m3 standard
+  pumpEfficiency: number; // %
+  motorEfficiency: number; // %
+  mechanicalEfficiency: number; // %
+  powerRateCustom: number; // currency unit per kWh
+  motorRPM: number; // RPM e.g. 2900
 }
 
 export interface HeadResults {
-  totalHeadMetric: number; // m
-  totalHeadImperial: number; // ft
+  diffPressureHead: number;
+  systemResistanceHead: number;
+  totalHead: number;
+  totalHeadMetric: number;
+  totalHeadImperial: number;
+  recommendedRange: string;
 }
 
 export interface CapacityResults {
-  flowRateKgHr: number;
-  flowRateLbHr: number;
-  flowRateM3Hr: number;
-  flowRateGPM: number;
+  requiredMassFlow: number;
+  flowKgHr: number;
+  flowM3Hr: number;
+  flowGPM: number;
+  flowLMin: number;
+  recommendedPipeDiameter: number; // mm
+  recommendedPipeDiameterInches: number; // inches
 }
 
 export interface PowerResults {
@@ -51,6 +63,10 @@ export interface PowerResults {
   shaftPowerHp: number;
   motorPowerKw: number;
   motorPowerHp: number;
+  systemEfficiency: number;
+  annualCost: number;
+  carbonEmissions: number;
+  specificSpeed: number;
 }
 
 export interface FAQItem {
