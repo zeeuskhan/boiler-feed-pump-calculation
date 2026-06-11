@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
 import { UnitSystem } from '../types';
-import { RajeshKumarBio, CommonSizingMistakes } from '../data/seoContent';
+import { CommonSizingMistakes } from '../data/seoContent';
 import { Zap, RotateCcw, AlertTriangle, BookOpen, Clock, Activity, CheckCircle, Flame } from 'lucide-react';
 
 interface PowerViewProps {

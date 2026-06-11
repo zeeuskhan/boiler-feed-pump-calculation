@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
 import { UnitSystem } from '../types';
-import { RajeshKumarBio, IndustryStandardsList, CommonSizingMistakes } from '../data/seoContent';
+import { IndustryStandardsList, CommonSizingMistakes } from '../data/seoContent';
 import { FileText, ArrowRight, BookOpen, RotateCcw, Compass, ListTodo, HelpCircle, Activity } from 'lucide-react';
 
 interface SizingGuideViewProps {

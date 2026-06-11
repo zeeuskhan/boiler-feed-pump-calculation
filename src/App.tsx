@@ -45,7 +45,6 @@ import SelectionChartView from './components/SelectionChartView';
 import AboutView from './components/AboutView';
 import ContactView from './components/ContactView';
 import LegalView from './components/LegalView';
-import AuthorBio from './components/AuthorBio';
 
 export default function App() {
   // Global Unit Standard Toggle
@@ -2022,11 +2021,6 @@ export default function App() {
       ) : (
         <LegalView sectionType="disclaimer" />
       )}
-
-      {/* Global Author credentials card featured below the active subpage content block */}
-      <div className="max-w-7xl mx-auto px-6 mt-8">
-        <AuthorBio />
-      </div>
 
       {/* Footer Banner Spot */}
       <div className="max-w-7xl mx-auto px-6">

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { UnitSystem } from '../types';
 import PumpCurveChart from './PumpCurveChart';
-import { RajeshKumarBio } from '../data/seoContent';
 import { Award, RotateCcw, Sliders, TrendingUp, Info, BookOpen } from 'lucide-react';
 
 interface SelectionChartViewProps {

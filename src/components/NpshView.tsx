@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
 import { UnitSystem } from '../types';
-import { RajeshKumarBio, WorkedExamplesList, FullFaqList, IndustryStandardsList } from '../data/seoContent';
+import { WorkedExamplesList, FullFaqList, IndustryStandardsList } from '../data/seoContent';
 import { ShieldCheck, Info, RotateCcw, AlertTriangle, BookOpen, Scaling, CheckCircle } from 'lucide-react';
 
 interface NpshViewProps {
@@ -308,23 +308,23 @@ export default function NpshView({ unitSystem }: NpshViewProps) {
 
         {/* E-E-A-T Side Expert Box / Quick Guidelines (Right Panel) */}
         <div className="lg:col-span-5 space-y-6">
-          {/* EXPERT HIGHLIGHT */}
+          {/* HYDRODYNAMIC INSIGHT */}
           <div className="bg-gradient-to-br from-[#121E36] to-[#0A1224] border border-[#2A3F5F]/50 rounded-2xl p-6 shadow-lg">
             <div className="flex items-center gap-3 mb-4">
-              <div className="h-14 w-14 rounded-full overflow-hidden border-2 border-[#1E90FF] shrink-0 bg-[#0d1117] flex items-center justify-center">
-                <span className="text-xl font-bold font-mono text-[#1E90FF]">RK</span>
+              <div className="h-12 w-12 rounded-full overflow-hidden border border-[#2A3F5F] shrink-0 bg-[#0d1117]/60 flex items-center justify-center text-lg">
+                💡
               </div>
               <div>
-                <h3 className="font-bold text-white text-base">{RajeshKumarBio.name}</h3>
-                <p className="text-xs text-[#FFB400] font-medium mt-0.5">Lead Hydraulic Sizing Specialist</p>
+                <h3 className="font-bold text-white text-base">Deaerator Saturation Principle</h3>
+                <p className="text-xs text-[#00C896] font-medium mt-0.5">Hydrodynamic Design Advice</p>
               </div>
             </div>
             <div className="text-xs text-slate-300 leading-relaxed space-y-2">
               <p>
-                "In high-temperature boiler feed setups, the water in the deaerator tank is literally sitting at its saturation boiling point. This means that the deaerator suction vessel pressure is exactly balanced by the water vapor pressure."
+                In high-temperature boiler feed setups, the water in the deaerator tank is literally sitting at its saturation boiling point. This means that the deaerator suction vessel pressure is exactly balanced by the water vapor pressure.
               </p>
               <p className="font-semibold text-[#1E90FF] bg-[#1E90FF]/5 p-2 rounded border border-[#1E90FF]/15">
-                💡 Expert Secret: The atmospheric and pressure terms in your suction equations cancel out completely! The physical static vertical height of your deaerator is the only variable generating positive pressure to prevent vaporization!
+                💡 Design Guideline: The deaerator vessel pressure and the liquid's saturation vapor pressure terms in your suction equations cancel out completely. The static vertical elevation height of your deaerator is the primary variable generating positive pressure to prevent pump cavitation.
               </p>
             </div>
           </div>

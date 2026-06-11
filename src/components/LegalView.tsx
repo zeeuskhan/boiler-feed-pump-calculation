@@ -95,7 +95,7 @@ export default function LegalView({ sectionType }: LegalViewProps) {
                 2. No Contractual Bond
               </h2>
               <p>
-                Utilization of this website does not construct a Client-Engineer consultation contract. We provide these models for initial educational layouts only. The author, Rajesh Kumar, and our parent organization reject all liability for physical fluid piping failures arising from utilizing digital figures.
+                Utilization of this website does not construct a Client-Engineer consultation contract. We provide these models for initial educational layouts only. Our parent organization rejects all liability for physical fluid piping failures arising from utilizing digital figures.
               </p>
             </section>
 

@@ -61,7 +61,7 @@ export default function ContactView() {
               >
                 <div className="pb-3 border-b border-[#2A3F5F]/20 mb-4">
                   <h3 className="font-bold text-white text-base">File a Mechanical Sizing Ticket</h3>
-                  <p className="text-[10px] text-slate-400">Directly routed to Lead Engineer Rajesh Kumar</p>
+                  <p className="text-[10px] text-slate-400">Directly routed to our Sizing Helpdesk</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -162,7 +162,7 @@ export default function ContactView() {
                 </div>
                 <h3 className="text-xl font-bold text-white font-sans">Engineering Sizing Ticket Received!</h3>
                 <p className="text-xs text-slate-300 max-w-sm mx-auto leading-relaxed">
-                  Our technical team has successfully filed ticket <strong className="text-white">#BFP-{Math.floor(1000 + Math.random() * 9000)}-UP</strong>. Lead Engineer Rajesh Kumar has been notified, and will email you with recommendations within 48 hours.
+                  Our technical team has successfully filed ticket <strong className="text-white">#BFP-{Math.floor(1000 + Math.random() * 9000)}-UP</strong>. A sizing specialist has been notified, and will email you with recommendations within 48 hours.
                 </p>
                 <button
                   onClick={handleReset}

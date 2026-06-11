@@ -1,7 +1,6 @@
 /**
- * E-E-A-T and Topical Authority Content Repository
- * Authoritative content written under the expert profile of Rajesh Kumar
- * Former Pump Design Engineer at Kirloskar Brothers Ltd (KBL)
+ * Sizing and Topical Authority Content Repository
+ * Standard parameters and expert guidelines for Boiler Feedwater Systems
  */
 
 export interface WorkedExample {
@@ -40,39 +39,6 @@ export interface FAQItem {
   schemaAnswer: string;
 }
 
-export const RajeshKumarBio = {
-  name: "Rajesh Kumar, B.E. (Mechanical)",
-  credentials: "B.E. (Mech), M.Tech (Fluid Systems), PE (Professional Engineer)",
-  experience: "12+ Years in Industrial Fluid Mechanics & Pump Design",
-  bio: "Rajesh Kumar is an acclaimed hydraulic engineering specialist with over 12 years of hands-on experience in pump design and sizing. Formerly a Lead Pump Design Engineer at Kirloskar Brothers Ltd., Rajesh has successfully engineered, sized, and audited boiler feed pump systems for more than 40 high-capacity utility-scale and captive thermal power plants across Asia, including major installations such as the 4,760 MW NTPC Vindhyachal Super Thermal Power Station and the 1,320 MW Adani Tiroda Captive Power Block. Every formula, coefficient, and safety threshold implemented in these calculators is verified against physical hydrostatic test data from over 200 real-world BFP installations operating under extreme pressures (up to 180 bar) and temperatures (up to 165°C).",
-  linkedIn: "https://linkedin.com/in/rajesh-kumar-pump-engineer-fictional",
-  certifications: [
-    "Chartered Engineer (C.Eng) - Institution of Engineers India",
-    "Certified Energy Auditor (CEA) - Bureau of Energy Efficiency (BEE India)",
-    "Active Member - American Society of Mechanical Engineers (ASME India)",
-    "Senior Committee Member - Indian Society of Heating, Refrigerating and Air Conditioning Engineers (ISHRAE)"
-  ],
-  projects: [
-    {
-      plant: "NTPC Vindhyachal Super Thermal Power Station",
-      boiler: "500 MW Subcritical Boiler Block (1650 TPH MCR)",
-      pump: "Segmental Multistage Ring-Section Pump (Barrel-cased design, 14 stages)",
-      outcome: "Designed suction booster arrangement to eliminate critical cavitation failures during transient turbine load shedding."
-    },
-    {
-      plant: "Adani Tiroda Thermal Power Plant",
-      boiler: "660 MW Supercritical Boiler Block (2100 TPH MCR)",
-      pump: "Double-suction, double-case multistage high-pressure feed pump",
-      outcome: "Optimized impeller eye profiles to reduce NPSHr by 1.8 meters, delivering significant civil engineering foundation cost savings."
-    },
-    {
-      plant: "Adani Petrochem Cogenerator Hub, Dahej",
-      boiler: "150 TPH High Pressure Boiler (90 bar, 540°C)",
-      pump: "MD-Series Horizontal Multistage Centrifugal Pump",
-      outcome: "Implemented dual mechanical seal systems and calibrated variable frequency driving (VFD) flow regulators."
-    }
-  ]
-};
 
 export const WorkedExamplesList: WorkedExample[] = [
   {
