@@ -1,0 +1,125 @@
+import React from 'react';
+import { ShieldCheck, Scale, FileText, Info, Compass, Mail, MapPin } from 'lucide-react';
+
+interface LegalViewProps {
+  sectionType: 'privacy' | 'disclaimer';
+}
+
+export default function LegalView({ sectionType }: LegalViewProps) {
+  const isPrivacy = sectionType === 'privacy';
+
+  return (
+    <div className="max-w-4xl mx-auto px-6 py-10 text-slate-300 text-sm leading-relaxed" id="legal-view-root">
+      {/* Editorial Header */}
+      <div className="mb-10 text-center border-b border-[#2A3F5F]/40 pb-8">
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#1E90FF]/10 text-[#1E90FF] rounded-full text-xs font-mono font-bold mb-4">
+          {isPrivacy ? <ShieldCheck className="h-4 w-4" /> : <Scale className="h-4 w-4" />} LEGAL & STANDARDS COMPLIANCE
+        </div>
+        <h1 className="text-3xl md:text-5xl font-sans tracking-tight font-bold text-white mb-4">
+          {isPrivacy ? "Institutional Privacy Policy" : "Professional Engineering Disclaimer"}
+        </h1>
+        <p className="text-slate-400 text-sm max-w-xl mx-auto font-mono">
+          Last Updated: June 2026 | Sizing Standards: IS 9137, HI/ANSI 14.3, ASME Sec I
+        </p>
+      </div>
+
+      {isPrivacy ? (
+        /* PRIVACY POLICY CONTENT BLOCK */
+        <div className="space-y-6">
+          <section className="space-y-3">
+            <h2 className="text-lg font-bold text-white flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-[#1E90FF]"></span>
+              1. Our Integrity Commitment
+            </h2>
+            <p>
+              This computational portal is hosted as a free service to plant piping engineers, civil thermal layouts, and student fluid mechanics. We believe in absolute user privacy. Our tools calculate input data directly in-browser on the client-side or securely proxy thermodynamic lookup equations without collecting, logging, or harvesting technical specifications or email addresses.
+            </p>
+          </section>
+
+          <section className="space-y-3">
+            <h2 className="text-lg font-bold text-white flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-[#1E90FF]"></span>
+              2. Technical Data Captured
+            </h2>
+            <p>
+              When using our calculators (Total Dynamic Head, Suction NPSH, Driver ratings), the variables entered (flows, temperatures, booster sizes) are retained strictly in the active frame of your local memory state. No technical parameter registers back to our databases or gets compiled for targeting profile scripts.
+            </p>
+          </section>
+
+          <section className="space-y-3">
+            <h2 className="text-lg font-bold text-white flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-[#1E90FF]"></span>
+              3. Cookie Usage & Analytical Modules
+            </h2>
+            <p>
+              We implement minimal, high-security analytical cookies to measure audience traffic and optimize Core Web Vitals (CLS, INP, LCP). These cookies do not track individual behavior.
+            </p>
+          </section>
+
+          <section className="space-y-3">
+            <h2 className="text-lg font-bold text-white flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-[#1E90FF]"></span>
+              4. Security Compliance (GDPR, CCPA)
+            </h2>
+            <p>
+              We compile with global safety criteria. All users have full rights to request immediate audits. For technical inquiries, contact our Legal Liaison Division at <strong className="text-white">privacy@boilerfeedpumpcalculator.in</strong>.
+            </p>
+          </section>
+        </div>
+        ) : (
+          /* ENGINEERING DISCLAIMER CONTENT BLOCK */
+          <div className="space-y-6">
+            <div className="p-4 bg-red-950/15 border border-red-500/25 rounded-xl flex items-start gap-3 text-red-300">
+              <Info className="h-5 w-5 shrink-0 text-red-400 mt-0.5" />
+              <div className="text-xs space-y-1">
+                <h4 className="font-bold text-white uppercase tracking-wider">Critical Engineering Warning Notice</h4>
+                <p>
+                  Industrial fluid networks containing steam boilers represent extreme danger. Temperatures exceeding 100°C and pressures above 40 bar contain immense potential energy that can trigger catastrophic explosions or severe wounding if piping layouts fail. Always verify calculations with certified PE engineers before ordering hardware.
+                </p>
+              </div>
+            </div>
+
+            <section className="space-y-3">
+              <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-red-400"></span>
+                1. Boundaries of Computational Sizing
+              </h2>
+              <p>
+                The outputs generated by this suite are structured on theoretical engineering formulas (ASME B31.1, Bernoulli's energy states, and Antoine vapor bounds). It represents steady-state hydraulic conditions. Sizing parameters do not account for physical thermal transients, structural pipe stresses, structural loads, concrete foundation settlements, water hammer surges, or localized sand erosions.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-red-400"></span>
+                2. No Contractual Bond
+              </h2>
+              <p>
+                Utilization of this website does not construct a Client-Engineer consultation contract. We provide these models for initial educational layouts only. The author, Rajesh Kumar, and our parent organization reject all liability for physical fluid piping failures arising from utilizing digital figures.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-red-400"></span>
+                3. Industry Standards Alignment
+              </h2>
+              <p>
+                All users are urged to physically consult official code sheets from the American Society of Mechanical Engineers (<strong className="text-white">ASME Sec I</strong>), Bureau of Indian Standards (<strong className="text-white">IS 9137</strong>), and the Hydraulic Institute (<strong className="text-white">HI/ANSI 14.3</strong>) for formal plant sizing.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-red-400"></span>
+                4. Peer Sizing Validation Program
+              </h2>
+              <p>
+                If your company requires a licensed professional engineer to sign off or stamp a formal thermal plant auxiliary layout, please submit an engineering query ticket directly via our <a href="#/contact" className="text-[#1E90FF] underline font-bold">Inquiry Desk</a>.
+              </p>
+            </section>
+          </div>
+          )}
+        </div>
+      );
+}

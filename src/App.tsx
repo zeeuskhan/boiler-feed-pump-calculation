@@ -37,6 +37,16 @@ import AdBanner from './components/AdBanner';
 import SystemDiagram from './components/SystemDiagram';
 import PumpCurveChart from './components/PumpCurveChart';
 
+// Modular Web Sizing Portal Subviews
+import NpshView from './components/NpshView';
+import PowerView from './components/PowerView';
+import SizingGuideView from './components/SizingGuideView';
+import SelectionChartView from './components/SelectionChartView';
+import AboutView from './components/AboutView';
+import ContactView from './components/ContactView';
+import LegalView from './components/LegalView';
+import AuthorBio from './components/AuthorBio';
+
 export default function App() {
   // Global Unit Standard Toggle
   const [unitSystem, setUnitSystem] = useState<UnitSystem>(UnitSystem.Metric);
@@ -82,6 +92,39 @@ export default function App() {
 
   // FAQ state tracking
   const [openFaq, setOpenFaq] = useState<string | null>('faq-1');
+
+  // Router view state synced with URL hashes
+  const [currentView, setCurrentView] = useState<string>('calculator');
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash === '#/npsh') {
+        setCurrentView('npsh-calc');
+      } else if (hash === '#/power') {
+        setCurrentView('power-calc');
+      } else if (hash === '#/sizing-guide') {
+        setCurrentView('sizing-guide');
+      } else if (hash === '#/selection-chart') {
+        setCurrentView('selection-chart');
+      } else if (hash === '#/about') {
+        setCurrentView('about');
+      } else if (hash === '#/contact') {
+        setCurrentView('contact');
+      } else if (hash === '#/privacy-policy') {
+        setCurrentView('privacy');
+      } else if (hash === '#/disclaimer') {
+        setCurrentView('disclaimer');
+      } else {
+        setCurrentView('calculator');
+      }
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    };
+
+    handleHashChange();
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   // Parse custom number inputs so empty entries display beautifully instead of forcing a 0
   const parseNumInput = (value: string): number | "" => {
@@ -546,10 +589,42 @@ export default function App() {
             </button>
           </div>
         </div>
+
+        {/* SECONDARY NAVIGATION LAYER (E-E-A-T CONTENT HUB) */}
+        <div className="max-w-7xl mx-auto mt-4 pt-3 border-t border-[#2A3F5F]/45 flex items-center overflow-x-auto gap-1 md:gap-2 pb-1 no-scrollbar scroll-smooth">
+          {[
+            { id: 'calculator', label: '1. Sizing Calculator', hash: '#/' },
+            { id: 'npsh-calc', label: '2. Suction NPSH', hash: '#/npsh' },
+            { id: 'power-calc', label: '3. Power & Efficiency', hash: '#/power' },
+            { id: 'sizing-guide', label: '4. Piping Checklist', hash: '#/sizing-guide' },
+            { id: 'selection-chart', label: '5. Selection Curves', hash: '#/selection-chart' },
+            { id: 'about', label: '6. Engineering Team', hash: '#/about' },
+            { id: 'contact', label: '7. HelpDesk Ticket', hash: '#/contact' },
+            { id: 'privacy', label: '8. Privacy Policies', hash: '#/privacy-policy' },
+            { id: 'disclaimer', label: '9. ASME Disclaimers', hash: '#/disclaimer' }
+          ].map((lnk) => {
+            const isActive = currentView === lnk.id;
+            return (
+              <a
+                key={lnk.id}
+                href={lnk.hash}
+                className={`px-3 py-1.5 rounded-lg text-[11px] md:text-xs font-mono font-medium tracking-wide transition shrink-0 border ${
+                  isActive
+                    ? 'bg-[#1E90FF]/10 text-[#1E90FF] border-[#1E90FF]/40 font-bold'
+                    : 'bg-[#101E35]/40 text-slate-400 border-transparent hover:text-white hover:bg-[#1A2942]/40'
+                }`}
+              >
+                {lnk.label}
+              </a>
+            );
+          })}
+        </div>
       </nav>
 
-      {/* HERO SECTION */}
-      <header className="max-w-7xl mx-auto px-6 pt-10 pb-8 no-print text-center md:text-left relative">
+      {currentView === 'calculator' ? (
+        <>
+          {/* HERO SECTION */}
+          <header className="max-w-7xl mx-auto px-6 pt-10 pb-8 no-print text-center md:text-left relative">
         <div className="absolute top-10 right-10 opacity-5 blur-3xl pointer-events-none">
           <div className="bg-gradient-to-r from-[#1E90FF] to-[#00C896] w-96 h-96 rounded-full" />
         </div>
@@ -560,7 +635,7 @@ export default function App() {
         </div>
         
         <h1 className="text-3.5xl md:text-5xl font-extrabold text-white tracking-tight leading-tight select-none">
-          Boiler Feed Pump <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-[#1E90FF] to-[#00C896]">Sizing & Calculation</span> Sizer
+          Boiler Feed Pump <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-[#1E90FF] to-[#00C896]">Calculation</span> & Sizing Tool
         </h1>
         <p className="mt-3 text-base text-[#A8B8D0] max-w-3xl leading-relaxed">
           Free, professional-grade online calculator for boiler feed pump calculation. Solve Total Dynamic Head (TDH), water volumetric sizing capacity flow rates, NPSH available buffers, and electrical driver motor power demands instantly using verified ASME Section I thermal guidelines.
@@ -1929,6 +2004,29 @@ export default function App() {
         </section>
 
       </article>
+        </>
+      ) : currentView === 'npsh-calc' ? (
+        <NpshView unitSystem={unitSystem} />
+      ) : currentView === 'power-calc' ? (
+        <PowerView unitSystem={unitSystem} />
+      ) : currentView === 'sizing-guide' ? (
+        <SizingGuideView unitSystem={unitSystem} />
+      ) : currentView === 'selection-chart' ? (
+        <SelectionChartView unitSystem={unitSystem} />
+      ) : currentView === 'about' ? (
+        <AboutView />
+      ) : currentView === 'contact' ? (
+        <ContactView />
+      ) : currentView === 'privacy' ? (
+        <LegalView sectionType="privacy" />
+      ) : (
+        <LegalView sectionType="disclaimer" />
+      )}
+
+      {/* Global Author credentials card featured below the active subpage content block */}
+      <div className="max-w-7xl mx-auto px-6 mt-8">
+        <AuthorBio />
+      </div>
 
       {/* Footer Banner Spot */}
       <div className="max-w-7xl mx-auto px-6">
@@ -1941,7 +2039,7 @@ export default function App() {
           <div className="space-y-2 text-center md:text-left">
             <div className="flex items-center gap-2 justify-center md:justify-start">
               <span className="h-2 w-2 rounded-full bg-[#00C896]" />
-              <p className="font-bold text-slate-200">Thermosolve Sizing Engine (ASME Section I)</p>
+              <p className="font-bold text-slate-200">Thermosolve Boiler Feed Pump Calculation Suite (ASME Section I)</p>
             </div>
             <p className="max-w-md leading-relaxed text-[10px] text-slate-400">
               Disclaimer: Sizing calculations provided by Thermosolve are for preliminary estimation and educational mock purposes only. Always coordinate final impeller and trim dimensions with certified manufacturer curves before procurement.
