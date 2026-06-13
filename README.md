@@ -1,105 +1,303 @@
-# Boiler Feed Pump Calculator - Free Online Boiler Feed Pump Calculation Tool
+# Boiler Feed Pump Calculation - Free Online Boiler Feed Pump Calculator
 
-A free online Boiler Feed Pump Calculator designed for engineers, students, and boiler operators to calculate boiler feed pump requirements quickly and accurately.
+A powerful and easy-to-use Boiler Feed Pump Calculation tool created to help engineers, boiler operators, technicians, and students calculate important boiler feed pump parameters quickly.
 
-🔗 Live Calculator:
+This online calculator helps with boiler feed pump sizing calculation, capacity calculation, pump head, pressure, efficiency, NPSH, and power requirements using engineering principles.
+
+🔗 Try the Free Online Calculator:  
 https://boilerpumpcalc.vercel.app/
 
 
-## About Boiler Feed Pump Calculator
+---
 
-This Boiler Feed Pump Calculation Calculator helps calculate important pump parameters used in boiler systems.
+# What is Boiler Feed Pump Calculation?
 
-It is useful for mechanical engineers, plant operators, and students who need quick boiler feed water pump calculations.
+Boiler Feed Pump Calculation is the process of determining the correct pump specifications required to deliver feed water into a boiler safely and efficiently.
+
+A boiler feed pump must provide the correct amount of water at the required pressure to maintain stable boiler operation. Selecting the wrong pump size can lead to poor performance, high energy consumption, cavitation problems, or system failure.
+
+Engineers perform boiler feed pump calculations to determine:
+
+- Required pump capacity
+- Feed water flow rate
+- Total pump head
+- Operating pressure
+- Pump efficiency
+- Power consumption
+- NPSH requirements
 
 
-## Features
+---
 
-- Boiler feed pump calculation
-- Pump capacity calculation
-- Easy to use interface
-- Fast calculation results
-- Mobile friendly design
-- Free online engineering calculator
+# Why Use This Boiler Feed Pump Calculator?
+
+Manual pump calculations can take time and require multiple engineering formulas.
+
+This free boiler feed pump calculator simplifies the process by providing a fast and convenient way to estimate important pump values.
+
+It is designed for:
+
+- Mechanical engineers
+- Boiler operators
+- Maintenance engineers
+- Engineering students
+- Industrial professionals
+- Power plant technicians
 
 
-## Boiler Feed Pump Calculation Formula
+---
 
-The basic pump power calculation formula:
+# Boiler Feed Pump Calculation Formula
 
-Power = (Flow Rate × Head × Density × Gravity) / Efficiency
+The basic hydraulic power formula used in pump calculations is:
+
+```
+Pump Power = (Flow Rate × Head × Density × Gravity) / Efficiency
+```
 
 Where:
 
-- Flow Rate = Water flow requirement
-- Head = Required pump head
-- Efficiency = Pump efficiency
+**Flow Rate**  
+The amount of boiler feed water required by the system.
+
+**Head**  
+The total pressure energy required to move water through the boiler system.
+
+**Density**  
+Density of the working fluid.
+
+**Gravity**  
+Acceleration due to gravity.
+
+**Efficiency**  
+The performance efficiency of the pump.
 
 
-## How To Use Boiler Feed Pump Calculator
+---
 
-1. Open the calculator
-2. Enter required boiler parameters
-3. Add pump details
-4. Calculate results instantly
+# Boiler Feed Pump Sizing Calculation
 
+Boiler feed pump sizing calculation helps engineers select the correct pump according to boiler requirements.
 
-## Boiler Feed Pump Capacity Calculation
+Proper pump sizing depends on several important factors:
 
-Boiler feed pump capacity calculation is important for selecting the correct pump size for a boiler system.
+- Boiler capacity
+- Steam generation rate
+- Feed water demand
+- Boiler operating pressure
+- Total dynamic head
+- Pump efficiency
+- Safety margin
 
-A properly sized boiler feed pump helps maintain water supply, pressure, and boiler efficiency.
-
-
-## Applications
-
-This calculator can be used for:
-
-- Industrial boilers
-- Power plants
-- Steam systems
-- Mechanical engineering calculations
-- Pump selection
+An accurately sized boiler feed pump improves reliability, reduces energy loss, and increases equipment life.
 
 
-## Technologies Used
+---
+
+# Boiler Feed Water Pump Calculation
+
+Boiler feed water pump calculation determines the required amount of water that must be supplied to a boiler.
+
+The feed water pump must continuously maintain water flow according to boiler demand.
+
+Important calculation factors include:
+
+- Water flow requirement
+- Boiler pressure
+- Temperature conditions
+- System losses
+
+
+---
+
+# Boiler Feed Pump Capacity Calculation Example
+
+A boiler feed pump capacity calculation example helps understand real-world pump selection.
+
+Example:
+
+If a boiler requires a certain feed water flow:
+
+```
+Required Pump Capacity = Boiler Water Requirement + Safety Allowance
+```
+
+Engineers normally add a safety margin to make sure the pump can handle different operating conditions.
+
+Correct capacity selection prevents:
+
+- Low water supply issues
+- Overloading
+- Poor boiler efficiency
+
+
+---
+
+# Boiler Feed Pump Head Calculation
+
+Boiler feed pump head calculation determines the pressure energy required to move water into the boiler.
+
+Pump head depends on:
+
+- Boiler working pressure
+- Pipe friction losses
+- Elevation difference
+- Valve and fitting losses
+
+Choosing the correct pump head ensures stable water delivery.
+
+
+---
+
+# Boiler Feed Pump Pressure Calculation
+
+Boiler feed pump pressure calculation helps determine the pressure needed to overcome boiler pressure and system resistance.
+
+A feed pump must always generate enough pressure to push water into the boiler safely.
+
+Important factors:
+
+- Boiler drum pressure
+- Pressure losses
+- Required discharge pressure
+
+
+---
+
+# Boiler Feed Pump Power Calculation
+
+Boiler feed pump power calculation estimates the energy needed to operate the pump.
+
+Pump power depends on:
+
+- Flow rate
+- Total head
+- Fluid properties
+- Pump efficiency
+
+Optimizing pump power helps reduce energy costs.
+
+
+---
+
+# Boiler Feed Pump Efficiency Calculation
+
+Boiler feed pump efficiency calculation measures pump performance.
+
+Formula:
+
+```
+Efficiency (%) = Output Power / Input Power × 100
+```
+
+Higher efficiency means:
+
+- Lower energy usage
+- Better performance
+- Reduced operating cost
+
+
+---
+
+# Boiler Feed Pump NPSH Calculation
+
+NPSH (Net Positive Suction Head) calculation is important for preventing pump cavitation.
+
+Insufficient NPSH can cause:
+
+- Pump vibration
+- Performance loss
+- Mechanical damage
+
+Proper NPSH calculation increases pump reliability and lifespan.
+
+
+---
+
+# Boiler Feed Pump Calculation PDF Alternative
+
+Many engineers search for boiler feed pump calculation PDF guides to find formulas and examples.
+
+This online calculator provides a faster digital alternative where calculations can be performed directly without manual worksheets.
+
+
+---
+
+# Features
+
+✔ Free online boiler feed pump calculation  
+✔ Easy engineering calculations  
+✔ Fast results  
+✔ Mobile friendly design  
+✔ No installation required  
+✔ Suitable for industrial calculations  
+✔ Beginner friendly interface  
+
+
+---
+
+# Applications of Boiler Feed Pump Calculation
+
+This tool can be useful in:
+
+- Thermal power plants
+- Industrial boiler systems
+- Steam generation units
+- Manufacturing industries
+- Mechanical engineering projects
+- Pump selection processes
+
+
+---
+
+# Technology Stack
+
+This calculator is developed using:
 
 - React
 - TypeScript
 - Vite
 
 
-## Run Locally
+---
 
-Install dependencies:
-
-npm install
-
-Start development server:
-
-npm run dev
+# Frequently Asked Questions
 
 
-## Frequently Asked Questions
+## What is a Boiler Feed Pump Calculator?
+
+A Boiler Feed Pump Calculator is an engineering tool used to calculate pump capacity, head, pressure, efficiency, NPSH, and power requirements.
 
 
-### What is a Boiler Feed Pump Calculator?
+## How do you calculate boiler feed pump capacity?
 
-A Boiler Feed Pump Calculator is a tool used to estimate boiler feed water pump requirements based on engineering parameters.
-
-
-### Is this calculator free?
-
-Yes, this online boiler feed pump calculation tool is completely free.
+Boiler feed pump capacity is calculated based on required water flow, boiler demand, and operating conditions.
 
 
-### Who can use this calculator?
+## Why is boiler feed pump calculation important?
 
-Mechanical engineers, students, boiler operators and technicians can use this calculator.
+Proper calculation ensures reliable boiler operation, improves efficiency, and helps select the correct pump.
 
 
-## Live Tool
+## What is NPSH in boiler feed pump calculation?
 
-Use the calculator here:
+NPSH determines whether enough suction pressure is available to prevent pump cavitation.
+
+
+## Who can use this calculator?
+
+This tool can be used by engineers, students, technicians, boiler operators, and industrial professionals.
+
+
+## Is this Boiler Feed Pump Calculation tool free?
+
+Yes, this online boiler feed pump calculator is completely free.
+
+
+---
+
+# Start Boiler Feed Pump Calculation Online
+
+Use the free calculator here:
 
 https://boilerpumpcalc.vercel.app/
