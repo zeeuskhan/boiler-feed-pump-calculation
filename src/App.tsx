@@ -483,47 +483,47 @@ export default function App() {
     window.print();
   };
 
-  // FAQ array of 8 questions to precisely match Schema structures in index.html
+  // FAQ array of questions precisely matching Search Queries and schema structures
   const faqs: FAQItem[] = [
     {
       id: 'faq-1',
-      question: 'What is the formula for boiler feed pump calculation?',
-      answer: 'The primary formula matches TDH = (Pd - Ps) × 10.2 + ΔHv + Hf_suction + Hf_discharge + Hz, where Pd is discharge pressure (bar), Ps is suction pressure (bar), ΔHv is velocity head difference, Hf represents friction drops in piping/valves/economizers, and Hz represents static elevation rise. Sizing targets incorporate a 10% to 15% safety buffer margin.'
+      question: 'How do you calculate boiler feed pump capacity?',
+      answer: 'Boiler feed pump capacity is calculated by first establishing the boiler Maximum Continuous Rating (MCR) mass steam rate (in kg/hr or lb/hr). To ensure seamless fluid delivery, you must add continuous boiler blowdown purges (typically 2% to 5%) and physical system leakages, scaled by an engineering safety factor (usually 10% to 15%). The cumulative mass flow is then converted to volumetric capacity flow rate (m³/hr or GPM) using the density of water evaluated at the precise operating deaerator temperature. A pump sized with insufficient continuous boiler feed pump capacity will trigger safety sensor low-level trips in the stream drums.'
     },
     {
       id: 'faq-2',
-      question: 'How do I calculate the power required for a boiler feed pump?',
-      answer: 'First compute Hydraulic Fluid Power: Kw = (Q × H × ρ × g) / 3,600,000. Under mechanical parameters, physical Shaft BHP = Hydraulic Power / Pump Efficiency / Mechanical Coupling Efficiency. Finally, grid Electrical Power input = Shaft BHP / Motor Efficiency.'
+      question: 'What is boiler feed pump head calculation?',
+      answer: 'A boiler feed pump head calculation determines the Total Dynamic Head (TDH) required to force water into the steam drum. Mathematically, BFP head calculation is: TDH = [(P_discharge - P_suction) × C / SG] + Hz + Hf_suction + Hf_discharge + Hv. Here, P_discharge measures boiler operating pressure plus control valve drops; P_suction is the deaerator vessel pressure; C is the unit constant; SG is the feedwater specific gravity; Hz represents static elevation; Hf stands for piping friction resistance losses; and Hv is the velocity acceleration head. This head calculation guarantees that feedwater easily overcomes system back-pressure.'
     },
     {
       id: 'faq-3',
-      question: 'What is NPSH in boiler feed pump calculation?',
-      answer: 'Net Positive Suction Head (NPSH) is the absolute hydraulic pressure margin above liquid vapor pressure at the suction port. Sizing requires Net Positive Suction Head Available (NPSHa) to exceed NPSH Required (NPSHr) by at least 1.5 - 2.0 meters to fully prevent bubble flash vaporization and physical impeller pitting erosion.'
+      question: 'How to calculate boiler feed pump power?',
+      answer: 'To calculate boiler feed pump power, first solve for the hydraulic fluid power: Hydraulic Power (kW) = [Volumetric Flow (m³/s) × TDH (m) × Hot Water Density (kg/m³) × g] / 1000. Under mechanical design parameters, the actual shaft brake power (BHP) is computed as: Brake Power = Hydraulic Power / Pump Mechanical Efficiency. Finally, determine electric motor nameplate power: Motor Power = Brake Power / Motor Efficiency × Driver Safety Margin (typically 1.10 to 1.15). For boiler feed water pump calculation during cold commissioning, you must optimize for cold density (1000 kg/m³) to prevent motor driver overload.'
     },
     {
       id: 'faq-4',
-      question: 'How to calculate boiler feed pump flow rate?',
-      answer: 'The required feed flow is: Required Flow = Boiler Evaporation Capacity (MCR) × (1 + Blowdown Rate % + Makeup Loss %). Since evaporation is mass-based (kg/hr), convert to GPM or m³/hr volumetric flow by dividing by water density calculated at feedwater operating temperatures.'
+      question: 'What is boiler feed pump efficiency?',
+      answer: 'Boiler feed pump efficiency represents the efficiency parameter (hydraulic power output divided by shaft mechanical brake horsepower Input). Feed pump efficiency calculation typically ranges between 65% and 85% at the Best Efficiency Point (BEP). Operating a feed pump far to the left of its BEP causes intensive recirculation heat, high hub vibration, dynamic stress on the boiler feed pump bearing, and severe electrical waste. Balancing the impeller eye profile can restore optimum physical efficiency parameters.'
     },
     {
       id: 'faq-5',
-      question: 'What safety factor is used in boiler feed pump sizing?',
-      answer: 'Standard ASME thermal guidelines recommend a flow capacity multiplier margin of 10% to 15% and a head safety buffer of 10% to accommodate continuous mineral skin wear, control valve throttling drops, system scale growth, and transient flow swings.'
+      question: 'How do you select a boiler feed pump?',
+      answer: 'For a precise boiler feed pump selection calculation, you start by executing a boiler feed pump design calculation targeting three critical operational profiles: (1) design volumetric flow rate factoring in density and blowdowns, (2) Total Dynamic Head incorporating piping resistances, and (3) Net Positive Suction Head Available (NPSHa). For high-pressure utilities over 100 bar, you select API 610 BB4 radially split ring-section multistage or BB5 double-case barrel-cased configurations. For low-pressure package systems, single-stage centrifugal pumps may suffice.'
     },
     {
       id: 'faq-6',
-      question: 'How does water temperature affect boiler feed pump calculation?',
-      answer: 'Increasing operating temperature lowers water density (e.g. 954 kg/m³ at 105°C vs 1000 kg/m³ at 20°C), requiring greater volumetric flow (m³/hr) to transport identical steam mass rates. Higher temperature also boosts vapor pressure significantly, reducing NPSH available and escalating cavitation risks.'
+      question: 'What is the formula for boiler feed pump calculation?',
+      answer: 'The primary boiler feed pump formula for total head is TDH = (Pd - Ps) × 10.2 / SG + Hz + Hf_suction + Hf_discharge + ΔHv (Metric units) or TDH = (Pd - Ps) × 2.31 / SG + Hz + Hfs + Hfd + ΔHv (Imperial units). Mass balance is calculated as Q_design = Q_mcr × (1 + blowdown% + margin%) / ρ. Sizing relies on these two formulas to determine the mechanical head and mass capacities of the feedwater loop.'
     },
     {
       id: 'faq-7',
-      question: 'What is specific speed in pump selection?',
-      answer: 'Specific Speed (Ns = RPM × sqrt(GPM) / Head^0.75) is a dimensionless geometry factor. Ns between 500 and 2,000 indicates a radial flow centrifugal pump (low capacity, high pressure) matching boiler feedwater designs. Higher Ns indicate mixed or axial geometries.'
+      question: 'What is NPSH in boiler feed pump calculation?',
+      answer: 'In boiler feed pump npsh calculation, Net Positive Suction Head represents the net pressure envelope at the pump inlet above the water\'s boiling vapor pressure. Because boiler feed water enters near its boiling temperature, its static vapor pressure is extremely high. To prevent vapor bubble collapse (cavitation), you must elevate the deaerator tank to generate static height (Hz). Sizing must ensure NPSH Available (NPSHa) exceeds the pump\'s Required NPSH (NPSHr) by at least 1.5 to 2.0 meters.'
     },
     {
       id: 'faq-8',
-      question: 'What is the difference between single-stage and multi-stage boiler feed pumps?',
-      answer: 'Single-stage pumps handle limited head runs (typically up to 250m) matching low-pressure package boilers. Multi-stage centrifugal series (typically 4 to 14 impellers in series inline) generate massive heads needed for medium-to-large cogeneration plants and high-pressure steam power cycles.'
+      question: 'How does water temperature affect boiler feed pump calculation?',
+      answer: 'Feedwater water temperature alters both the density and vapor pressure of the pumped medium. Sizing at cold temperatures ignores the 7% to 10% volume expansion that occurs at 140°C, leading to flow deficits. Additionally, temperature increases vapor pressure exponentially. Sizing calculations must factor in the dynamic vapor pressure lookup to prevent the suction column from vaporizing and destroying the first-stage impellers.'
     }
   ];
 
@@ -1712,115 +1712,194 @@ export default function App() {
       {/* COMPREHENSIVE SEO DOCUMENTATION - Surpasses competitor blogs with extreme structured detail (2800+ words) */}
       <article className="max-w-5xl mx-auto px-6 mt-16 no-print space-y-16">
         
+        {/* MAIN SEO HEADER WITH PRIMARY TARGET KEYWORD */}
+        <div className="border-b border-[#2A3F5F]/40 pb-8">
+          <h1 className="text-3xl md:text-5.5xl font-extrabold text-white tracking-tight font-sans leading-tight">
+            Boiler Feed Pump Calculation
+          </h1>
+          <p className="mt-3 text-slate-400 text-base leading-relaxed">
+            Ultimate thermodynamic engineering resource and design handbook. Analyze high-pressure feedwater loops, dynamic friction losses, power demands, and cavitation-free NPSHa thresholds.
+          </p>
+        </div>
+
         {/* SECTION 1: WHAT IS BFP CALCULATION */}
-        <section id="what-is-bfp" className="space-y-4">
+        <section id="what-is-boiler-feed-pump-calculation" className="space-y-4">
           <h2 className="text-2.5xl font-bold text-white tracking-tight">What is Boiler Feed Pump Calculation?</h2>
           <p className="text-slate-300 text-sm leading-relaxed">
             A <strong>boiler feed pump calculation</strong> represents the core mechanical fluid-dynamics procedure executed by plant maintenance crew, design engineers, and thermal engineers to select high-pressure feedwater pumps. The feed pump must physically draw low-pressure water from deaerator tanks and force it under extreme pressure into steam drum boilers. Because steam boilers generate massive internal gauge pressures, feedwater systems have to operate at pressures exceeding the boiler drum threshold to prevent hazardous system back-flow.
           </p>
           <p className="text-slate-300 text-sm leading-relaxed">
-            Executing precise feed pump sizing ensures that the rotodynamic pump can supply continuous liquid volumes matching the boiler Maximum Continuous Rating (MCR). Without accurate mathematical analyses of pipeline suction friction drops, vertical static elevations, economizer resistances, and temperature-density fluctuations, plant systems risk catastrophic failures. Under-sized pumps produce dry boiler conditions, which trigger superheater melt-downs, while over-sized pumps waste massive amounts of grid electricity, leading to high operational costs and early control valve erosion.
+            Performing a correct <strong>boiler feed water pump calculation</strong> ensures that the selected rotodynamic pump can supply continuous liquid volumes matching the boiler Maximum Continuous Rating (MCR) without slipping into starvation. Under-sized pumps produce dry boiler conditions, which trigger superheater melt-downs and immediate steam drum low-level trips, whereas over-sized pumps waste massive amounts of grid electricity, leading to high operational costs and early control valve erosion. Sizing also directly influences the mechanical integrity of the <strong>boiler feed pump bearing</strong> arrangement, as severe off-design operation leads to heavy radial thrust imbalances. Proper regulation of the <strong>boiler feed pump balancing pressure</strong> recycle loop is vital to suppress axial rotor displacement.
           </p>
         </section>
 
-        {/* SECTION 2: RESULTS INTERPRETATION GUIDE */}
-        <section id="results-interpretation-guide" className="bg-[#101E35]/70 p-8 rounded-2xl border border-[#2A3F5F]/60">
-          <div className="flex items-center gap-3 mb-4">
-            <Scale className="h-6 w-6 text-[#FFB400]" />
-            <h2 className="text-2.5xl font-bold text-white tracking-tight">How to Interpret Your Sizing Results</h2>
-          </div>
-          <p className="text-slate-300 text-sm leading-relaxed mb-6">
-            When sizing a boiler feed pump system, the computed values provide the basic thermodynamic profile constraints required for pump selection. The most critical factor is the <strong>Total Dynamic Head (TDH)</strong>. If the TDH is calculated to be below 60 meters, this is typically indicative of low-pressure steam boilers or small condensate return loops. Conversely, high-pressure cogeneration or utility thermal plants demand heads ranging from 150 meters upwards. Operating above 300 meters typically calls for industrial-grade, multi-stage centrifugal boiler feedwater pumps of high engineering spec.
+        {/* SECTION 2: FLOW CALCULATION */}
+        <section id="boiler-feed-pump-flow-calculation" className="space-y-4">
+          <h2 className="text-2.5xl font-bold text-white tracking-tight">Boiler Feed Pump Flow Calculation</h2>
+          <p className="text-slate-300 text-sm leading-relaxed">
+            Executing a standard <strong>boiler feed pump flow calculation</strong> involves determining the absolute mass rate (in kg/hr or lb/hr) required by the steam cycle, and converting that value into a volumetric design flow rate (in m³/hr or GPM). Sizing parameters must incorporate continuous mineral purges—known as continuous boiler blowdown—and secondary steam losses:
           </p>
-          <p className="text-slate-300 text-sm leading-relaxed mb-6">
-            Volumetric flow capacity rates must also be heavily analyzed. Should the pump capacity exceed the design steam drum MCR by more than 150%, the pump will regularly run throttled, causing excessive back-pressure on feed control valves and elevating the risk of system hydraulic heat-up and shaft seal degradation. Conversely, running too close to base capacity factors leaves no margin to replenish sudden thermal loads, triggering low-level lock-outs inside the boiler steam drum. Refer directly to the specialized thermodynamic bounds table below for standardized reference ranges:
-          </p>
-
-          <div className="overflow-x-auto rounded-xl border border-[#2A3F5F] bg-[#0D1B2A]">
-            <table className="w-full text-xs text-left text-slate-300 divide-y divide-[#2A3F5F]">
-              <thead className="bg-[#1A2942] uppercase tracking-wider text-[#A8B8D0] font-mono">
-                <tr>
-                  <th className="p-4 border-r border-[#2A3F5F]">Parameter Index</th>
-                  <th className="p-4 border-r border-[#2A3F5F]">Typical Safe Range</th>
-                  <th className="p-4">Critical Warning Threshold</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-[#2A3F5F]">
-                <tr>
-                  <td className="p-4 border-r border-[#2A3F5F] font-semibold text-white">Total Dynamic Head (TDH)</td>
-                  <td className="p-4 border-r border-[#2A3F5F]">30 m – 350 m (98 ft – 1148 ft)</td>
-                  <td className="p-4 text-[#FF6B35] font-semibold">&gt; 450 m (Requires heavy multistage barrel cashing to avoid rotor vibration)</td>
-                </tr>
-                <tr>
-                  <td className="p-4 border-r border-[#2A3F5F] font-semibold text-white">Required Flow Capacity</td>
-                  <td className="p-4 border-r border-[#2A3F5F]">110% – 125% of Boiler MCR Steam Flow</td>
-                  <td className="p-4 text-[#FFB400] font-semibold">&lt; 105% (Cannot restore steam flash drops isovolumetrically)</td>
-                </tr>
-                <tr>
-                  <td className="p-4 border-r border-[#2A3F5F] font-semibold text-white">Pump Mechanical Efficiency</td>
-                  <td className="p-4 border-r border-[#2A3F5F]">65% – 85% Best Efficiency Point (BEP)</td>
-                  <td className="p-4 text-[#FF6B35] font-semibold">&lt; 55% (High electric cost, thermal dissipation issues)</td>
-                </tr>
-                <tr>
-                  <td className="p-4 border-r border-[#2A3F5F] font-semibold text-white">Motor Electrical Power Sizing</td>
-                  <td className="p-4 border-r border-[#2A3F5F]">115% – 125% of Pump Mechanical BHP</td>
-                  <td className="p-4 text-[#FFB400] font-semibold">&gt; 130% (Over-motored grid, poor power factor losses)</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        {/* SECTION 3: HOW TO SIZE - STEP BY STEP */}
-        <section id="step-by-step-sizing-guide" className="space-y-6">
-          <div className="flex items-center gap-2">
-            <Sliders className="h-6 w-6 text-[#1E90FF]" />
-            <h2 className="text-2.5xl font-bold text-white tracking-tight">Boiler Feed Pump Sizing — Step by Step</h2>
+          <div className="bg-[#050C16] p-5 rounded-xl border border-[#2A3F5F]/60 font-mono text-center my-4 text-[#00C896] leading-relaxed text-sm">
+            <span className="text-[10px] text-[#FFB400] font-bold block mb-2 uppercase">Mass Flow Balance Equation</span>
+            Mass Flow (m) = Boiler Steam Flow MCR × (1 + Blowdown Rate % + Safety Margin %)
           </div>
           <p className="text-slate-300 text-sm leading-relaxed">
-            Designing feedwater networks requires moving carefully through successive hydraulic milestones. Implementing an structured sizing workflow guarantees that your selection has sufficient capacity to counteract worst-case operating excursions without failing:
+            To translate this mass flow into volumetric design parameters, you must divide the mass flow by the physical density of the feedwater: <strong>Q = m / ρ</strong>. Because water expands significantly when heated, its density drops (e.g. from 1000 kg/m³ at room temperature to 925 kg/m³ at 140°C). Failing to utilize the hot fluid density in your <strong>boiler feed pump sizing calculation</strong> will produce a 7.5% flow deficit, leaving the steam loop short of preheated water. This density correction is the bedrock of professional <strong>boiler feed pump design calculation</strong> practices.
+          </p>
+        </section>
+
+        {/* SECTION 3: HEAD CALCULATION */}
+        <section id="boiler-feed-pump-head-calculation" className="space-y-4">
+          <h2 className="text-2.5xl font-bold text-white tracking-tight">Boiler Feed Pump Head Calculation</h2>
+          <p className="text-slate-300 text-sm leading-relaxed">
+            A precise <strong>boiler feed pump head calculation</strong> addresses the cumulative fluid head energy required to push water past steam drum backpressure, feed piping friction, control valve drops, and gravity elevation. It is measured in meters of water column (m.w.c) or feet. The governing <strong>boiler feed pump formula</strong> for head is:
+          </p>
+          <div className="bg-[#050C16] p-5 rounded-xl border border-[#2A3F5F]/60 font-mono text-center my-4 text-[#1E90FF] leading-relaxed text-sm">
+            <span className="text-[10px] text-[#FFB400] font-bold block mb-2 uppercase">Total Dynamic Head (TDH) Formula</span>
+            TDH = [(P_drum - P_deaerator) × 10.2 / SG] + Hz + Hf_suction + Hf_discharge + ΔHv
+          </div>
+          <p className="text-slate-300 text-sm leading-relaxed">
+            Where <em>SG</em> represents hot feedwater Specific Gravity, <em>Hz</em> represents physical static elevation rise (lift), <em>Hf</em> stands for suction/discharge pipeline friction drop, and <em>ΔHv</em> accounts for the dynamic velocity head difference. Standard ASME guidelines suggest adding a 10% safety margin to the computed <strong>boiler feed pump head calculation</strong> to counteract internal impeller wear, scale buildup in economizers, and transient load fluctuations.
+          </p>
+        </section>
+
+        {/* SECTION 4: CAPACITY CALCULATION EXAMPLE */}
+        <section id="boiler-feed-pump-capacity-calculation-example" className="bg-[#101E35]/60 border border-[#2A3F5F]/60 p-6 md:p-8 rounded-2xl space-y-4">
+          <h2 className="text-2.5xl font-bold text-white tracking-tight">Boiler Feed Pump Capacity Calculation Example</h2>
+          <p className="text-slate-300 text-sm leading-relaxed">
+            To illustrate how a thermal engineer executes these equations, let's work through a practical <strong>boiler feed pump capacity calculation example</strong> based on a typical industrial cogeneration system:
+          </p>
+          <div className="space-y-3 text-xs bg-[#0D1B2A] p-5 rounded-xl border border-[#2A3F5F]/40 leading-relaxed font-sans text-slate-300">
+            <h3 className="text-[#FFB400] font-mono font-bold text-sm uppercase">Example Sizing Scenario Parameters:</h3>
+            <p>• <strong>Boiler Maximum Continuous Rating (MCR):</strong> 80,000 kg/hr (80 Tons/Hour)</p>
+            <p>• <strong>Continuous Drum Blowdown Purge:</strong> 3% continuous sweep (2,400 kg/hr)</p>
+            <p>• <strong>Feedwater Design Operating Temperature:</strong> 135°C (deaerator heated)</p>
+            <p>• <strong>Engineering Flow Safety Factor:</strong> 10% flow reserve</p>
+            
+            <h4 className="text-white font-bold mt-4">Step-by-Step Capacity Flow Solution:</h4>
+            <p>
+              1. Compute cumulative mass flow requirement:<br />
+              <code className="text-[#00C896] bg-[#050C16] px-1.5 py-0.5 rounded">m = 80,000 kg/hr × (1 + 0.03) × 1.10 = 90,640 kg/hr</code>
+            </p>
+            <p>
+              2. Retrieve water density at 135°C from steam tables:<br />
+              <code className="text-[#00C896] bg-[#050C16] px-1.5 py-0.5 rounded">ρ (Density) = 930.2 kg/m³</code>
+            </p>
+            <p>
+              3. Calculate the required volumetric <strong>boiler feed pump capacity</strong>:<br />
+              <code className="text-[#00C896] bg-[#050C16] px-1.5 py-0.5 rounded">Q = 90,640 kg/hr / 930.2 kg/m³ = 97.44 m³/hr</code> (approx. 429 GPM)
+            </p>
+          </div>
+          <p className="text-slate-300 text-sm leading-relaxed">
+            This capacity example demonstrates how cold-water calculation biases are corrected. If styled with cold water constants (1,000 kg/m³), the required volumetric capacity would be incorrectly selected as only 90.6 m³/hr, resulting in a severe mass volume deficit of nearly 7 m³/hr when operating at design temperatures.
+          </p>
+        </section>
+
+        {/* SECTION 5: EFFICIENCY CALCULATION */}
+        <section id="boiler-feed-pump-efficiency-calculation" className="space-y-4">
+          <h2 className="text-2.5xl font-bold text-white tracking-tight">Boiler Feed Pump Efficiency Calculation</h2>
+          <p className="text-slate-300 text-sm leading-relaxed">
+            A precise <strong>boiler feed pump efficiency calculation</strong> is critical to control the massive electrical energy overheads of thermal power blocks. Centrifugal pump efficiency is the ratio of fluid hydraulic power output to the mechanical brake power input received at the driving shaft:
+          </p>
+          <div className="bg-[#050C16] p-5 rounded-xl border border-[#2A3F5F]/60 font-mono text-center my-4 text-[#FFB400] leading-relaxed text-sm">
+            <span className="text-[10px] text-[#00C896] font-bold block mb-2 uppercase">Pump Efficiency Formula</span>
+            Efficiency (η) = Hydraulic Power (WHP) / Brake Shaft Power (BHP) × 100%
+          </div>
+          <p className="text-slate-300 text-sm leading-relaxed">
+            High-pressure, multistage boiler feedwater pumps achieve peak efficiency (between 65% and 83%) at their Best Efficiency Point (BEP). Under-sizing or over-sizing forces the pump to operate in low-efficiency zones, which converts electrical grid energy into parasitic thermal gains and turbulence. This low-efficiency operation causes heavy mechanical recirculation, which stresses the <strong>boiler feed pump bearing</strong> pads, compromises mechanical seals, and damages internal impeller wear rings.
+          </p>
+        </section>
+
+        {/* SECTION 6: POWER CALCULATION */}
+        <section id="boiler-feed-pump-power-calculation" className="space-y-4">
+          <h2 className="text-2.5xl font-bold text-white tracking-tight">Boiler Feed Pump Power Calculation</h2>
+          <p className="text-slate-300 text-sm leading-relaxed">
+            The <strong>boiler feed pump power calculation</strong> translates hydraulic volume and pressure-head requirements into electrical driver margins. Sizing the motor must account for both the pump's internal mechanical losses and motor conversion coefficients:
+          </p>
+          <div className="bg-[#050C16] p-5 rounded-xl border border-[#2A3F5F]/60 font-mono text-center my-4 text-[#00C896] leading-relaxed text-sm">
+            <span className="text-[10px] text-[#FFB400] font-bold block mb-2 uppercase">Core Power Equations</span>
+            Hydraulic Power (kW) = [Q (m³/hr) × TDH (m) × Specific Gravity] / 367.2<br />
+            Brake Power (kW) = Hydraulic Power / η_pump<br />
+            Motor Sized Power (kW) = Brake Power × Motor Margin Factor (typically 1.15)
+          </div>
+          <p className="text-slate-300 text-sm leading-relaxed">
+            Because BFP motor sizing is based on hot specific gravity, testing the pump using cold water (ρ = 1,000 kg/m³) during plant commissioning will draw approximately 8% to 12% more power. Sizers must ensure the chosen motor nameplate includes an adequate safety margin to handle cold commissioning water without tripping the electric breakers.
+          </p>
+        </section>
+
+        {/* SECTION 7: PRESSURE CALCULATION */}
+        <section id="boiler-feed-pump-pressure-calculation" className="space-y-4">
+          <h2 className="text-2.5xl font-bold text-white tracking-tight">Boiler Feed Pump Pressure Calculation</h2>
+          <p className="text-slate-300 text-sm leading-relaxed">
+            Determining casing thickness and pipe flange pressure classes requires a thorough <strong>boiler feed pump pressure calculation</strong>. This process evaluates both dynamic suction pressures and peak discharge shutoff pressures:
+          </p>
+          <p className="text-slate-300 text-sm leading-relaxed">
+            The peak discharge pressure calculated must represent the absolute maximum pressure the pump can generate under zero-flow conditions (dead-head or shutoff). Mathematically, this is equal to the suction deaerator pressure added to the maximum shutoff head generated by the impeller stages at minimum flow. Pipeline components, control valves, check valves, and high-pressure feedwater heaters downstream must be rated to withstand this peak pressure to prevent hazardous pipeline ruptures under ASME B31.1 codes.
+          </p>
+        </section>
+
+        {/* SECTION 8: NPSH CALCULATION */}
+        <section id="boiler-feed-pump-npsh-calculation" className="space-y-4">
+          <h2 className="text-2.5xl font-bold text-white tracking-tight">Boiler Feed Pump NPSH Calculation</h2>
+          <p className="text-slate-300 text-sm leading-relaxed">
+            High-temperature feedwater systems are highly susceptible to cavitation damage, making the <strong>boiler feed pump npsh calculation</strong> the most critical part of suction piping design. To prevent water from vaporizing at the first-stage impeller, you must ensure that the Net Positive Suction Head Available (NPSHa) exceeds the pump's Required NPSH (NPSHr):
+          </p>
+          <div className="bg-[#050C16] p-5 rounded-xl border border-[#2A3F5F]/60 font-mono text-center my-4 text-[#1E90FF] leading-relaxed text-sm">
+            <span className="text-[10px] text-[#FFB400] font-bold block mb-2 uppercase">Governing NPSHa Formulation</span>
+            NPSHa = H_static_suction + (P_deaerator_abs - P_vapor_abs) / (ρ × g) - H_friction_suction
+          </div>
+          <p className="text-slate-300 text-sm leading-relaxed">
+            Because feedwater inside deaerators is stored under saturated boiling conditions, deaerator operating pressure exactly balances water vapor pressure (P_deaerator = P_vapor). Consequently, the pressure term in the equation cancels out completely. The static vertical elevation height of the deaerator vessel is the only physical variable generating positive suction pressure head. Elevating deaerators 6 to 15 meters above the pump centerline is standard practice to prevent steam-flash cavitation.
+          </p>
+        </section>
+
+        {/* SECTION 9: SIZING CALCULATION GUIDE */}
+        <section id="boiler-feed-pump-sizing-calculation-guide" className="bg-[#101E35]/70 p-8 rounded-2xl border border-[#2A3F5F]/60 space-y-6">
+          <h2 className="text-2.5xl font-bold text-white tracking-tight">Boiler Feed Pump Sizing Calculation Guide</h2>
+          <p className="text-slate-300 text-sm leading-relaxed">
+            This comprehensive guide provides a structured, multi-step workflow to help you execute professional-grade sizing calculations using our online <strong>boiler feed pumps calculator</strong>:
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
               {
                 step: '1',
-                title: 'Determine Maximum Continuous Rating (MCR) mass',
-                text: 'Consult boiler blueprints to establish the absolute peak mass volume of steam produced by the boiler under full thermodynamic thermal load (typically defined in kg/hr or lb/hr).'
+                title: 'Aggregate Mass Flow Targets',
+                text: 'Consult boiler specs to locate the Maximum Continuous Rating (MCR) mass of steam produced under peak loads. Express this value in kg/hr or lb/hr.'
               },
               {
                 step: '2',
-                title: 'Add Purge Blowdown & Condensate Makeup Factors',
-                text: 'Add continuous mineral purges (blowdown, usually 2-5%) and secondary makeup factors (offsetting plant vents, usually 8-12%) so clean water delivery matches peak steam outflow.'
+                title: 'Add Continuous Boiler Purges',
+                text: 'Add continuous drum blowdown (typically 2-4%) and secondary make-up factors to ensure feedwater volume matches overall steam losses.'
               },
               {
                 step: '3',
-                title: 'Evaluate Boiler Drum Working Pressure Difference',
-                text: 'Determine the differential pressure required to push into the boiler drum. Subtract deaerator inlet height pressure values from boiler operating drum gauge pressure setting.'
+                title: 'Check Feedwater Temperature',
+                text: 'Verify the deaerator operating temperature. Use thermodynamic steam tables to look up water density and saturation vapor pressure.'
               },
               {
                 step: '4',
-                title: 'Meticulously Audit Suction and Discharge Friction',
-                text: 'Trace piping, non-return valves, control dampers, economizer coils, and flow orifices. Solve friction resistance drops using standard engineering Darcy-Weisbach flow formulations.'
+                title: 'Translate Volumetric Capacity',
+                text: 'Divide the adjusted mass flow rate by the hot water density to calculate the required volumetric GPM or m³/hr flow rate.'
               },
               {
                 step: '5',
-                title: 'Map Static Lift and Velocity Head Heights',
-                text: 'Measure the precise vertical vertical rise elevation gap from suction tank water line to drum nozzle. Add dynamic velocity speed momentum factor values ($v^2/2g$).'
+                title: 'Calculate Discharge Pressures',
+                text: 'Incorporate steam drum operating pressure, boiler feed regulator valve throttling drops, feed heater losses, and discharge piping friction.'
               },
               {
                 step: '6',
-                title: 'Solve Water Density and Volumetric Conversions',
-                text: 'Lookup actual feedwater density based on operating temperature. If water heats to 120°C, density drops to 943 kg/m³, requiring greater volume capacities to feed equivalent mass weights.'
+                title: 'Map Suction Static Elevation',
+                text: 'Measure the physical vertical lift from the deaerator low-water line to the pump nozzle. Subtract friction losses along the suction run.'
               },
               {
                 step: '7',
-                title: 'Size Shaft Brake Power and Electric Motor',
-                text: 'Divide fluid hydraulic power by impeller efficiency at the BEP (65-80%) to calculate coupling Shaft BHP. Round up to the nearest IE3 standard induction motor bracket.'
+                title: 'Determine Total Dynamic Head',
+                text: 'Follow our ASME TDH formula to calculate total dynamic head. Add a 10% to 15% safety margin for potential system variations.'
               },
               {
                 step: '8',
-                title: 'Evaluate NPSH Safety Cavitation Margins',
-                text: 'Always guarantee that Net Positive Suction Head Available (NPSHa) has at least a 1.5m to 2.0m security margin over manufacturer\'s NPSHr to suppress destructive bubble collapse cavitation.'
+                title: 'Validate Motor Power & NPSH',
+                text: 'Calculate shaft BHP and select an appropriate motor nameplate. Verify that the suction NPSHa provides at least a 1.5-meter buffer above the NPSHr.'
               }
             ].map((item) => (
               <div key={item.step} className="bg-[#0D1B2A]/70 p-5 rounded-xl border border-[#2A3F5F]/40 hover:border-[#1E90FF]/50 transition duration-300">
@@ -1834,144 +1913,70 @@ export default function App() {
               </div>
             ))}
           </div>
-        </section>
-
-        {/* SECTION 4: FORMULAS EXPLAINED */}
-        <section id="engineering-formulae-explained" className="space-y-8">
-          <div className="flex items-center gap-2">
-            <BookOpen className="h-6 w-6 text-[#00C896]" />
-            <h2 className="text-2.5xl font-bold text-white tracking-tight font-sans">Boiler Feed Pump Calculation Formulas</h2>
-          </div>
-          <p className="text-slate-300 text-sm leading-relaxed font-sans">
-            Centrifugal water feed pump designs operate on verified thermodynamic equations governed by Hydraulic Institute and ASME physical codexes. Explore an in-depth breakdown of these sizing formulations:
-          </p>
-
-          <div className="space-y-6">
-            <div className="bg-[#0D1B2A] rounded-xl border border-[#2A3F5F] p-6 space-y-4">
-              <span className="text-xs font-mono text-[#00C896] uppercase tracking-wider font-bold block">
-                1. Total Dynamic Head (TDH) Governing Model
-              </span>
-              <p className="text-xs text-[#A8B8D0] leading-relaxed">
-                The Total Dynamic Head represents the cumulative mechanical pressure energy required at pump discharge to override both static elevation rise and dynamic piping drag resistance during operation:
-              </p>
-              
-              <div className="bg-[#050C16] p-4 rounded-lg border border-[#2A3F5F]/60 font-mono text-center my-2 text-[#1E90FF] leading-loose text-sm sm:text-base">
-                <div className="text-[10px] font-mono text-[#FFB400] mb-2 uppercase font-extrabold">GOVERNING PRESSURE-HEAD FORMULATION</div>
-                TDH = ((P<span className="text-xs font-sans">boiler</span> - P<span className="text-xs font-sans">da</span>) &times; C) + H<span className="text-xs font-sans">z</span> + H<span className="text-xs font-sans">f_suction</span> + H<span className="text-xs font-sans">f_discharge</span> + &Delta;H<span className="text-xs font-sans">v</span>
-              </div>
-
-              <div className="text-xs text-slate-300 space-y-2 leading-relaxed">
-                <p>Where:</p>
-                <p>• <strong>TDH</strong> = Pump Total Dynamic Head required (meters of water column or feet of water)</p>
-                <p>• <strong>P_boiler / P_da</strong> = Inside operating drum pressure and deaerator pressure respectively</p>
-                <p>• <strong>C</strong> = Scaling pressure factor (10.2 for converting bar to meters, 2.31 for converting psi to feet)</p>
-                <p>• <strong>Hz</strong> = Total physical static elevation rise from water level to boiler inlet nozzle</p>
-                <p>• <strong>Hf_suction / Hf_discharge</strong> = Friction drops across piping runs, check valves, control throttling, and economizers</p>
-                <p>• <strong>ΔHv</strong> = Kinetic velocity head difference, calculated as $v^2/2g$ to account for flow acceleration</p>
-              </div>
-            </div>
-
-            <div className="bg-[#0D1B2A] rounded-xl border border-[#2A3F5F] p-6 space-y-4">
-              <span className="text-xs font-mono text-[#00C896] uppercase tracking-wider font-bold block">
-                2. Sizing Capacity Mass-Flow Balance Equation
-              </span>
-              <p className="text-xs text-[#A8B8D0] leading-relaxed">
-                Volumetric sizers need mass flow balances. Warm feedwater delivery must be continuously throttled to replace boiler steam losses plus chemical purge water blowdown rates:
-              </p>
-
-              <div className="bg-[#050C16] p-4 rounded-lg border border-[#2A3F5F]/60 font-mono text-center my-2 text-[#00C896] leading-loose text-sm sm:text-base">
-                <div className="text-[10px] font-mono text-[#FFB400] mb-2 uppercase font-bold">MASS FLOW RATE CONSERVATION MODEL</div>
-                m<span className="text-xs font-sans">feedwater</span> = Boiler Capacity MCR &times; (1 + Blowdown % + Safety Buffer %)
-              </div>
-
-              <p className="text-xs text-slate-300 leading-relaxed">
-                To translate this raw mass flow rating (m_feedwater) into volumetric design flow rate (Q_design in m³/hr or GPM) needed to select actual pumps, use the physical water density coefficient (rho) evaluated at operating feed conditions:
-                <strong> Q = m / ρ</strong>.
-              </p>
-            </div>
-
-            <div className="bg-[#0D1B2A] rounded-xl border border-[#2A3F5F] p-6 space-y-4 font-sans">
-              <span className="text-xs font-mono text-[#00C896] uppercase tracking-wider font-bold block">
-                3. NPSH Available Verification Model
-              </span>
-              <p className="text-xs text-[#A8B8D0] leading-relaxed">
-                Boiler feed pumps draw from hot, near-boiling water, making them vulnerable to cavitation. Cavitation ruins impeller blades and breaks structural bearings. To predict this, size the Net Positive Suction Head Available (NPSHa):
-              </p>
-
-              <div className="bg-[#050C16] p-4 rounded-lg border border-[#2A3F5F]/60 font-mono text-center my-2 text-white leading-loose text-sm sm:text-base">
-                <div className="text-[10px] font-mono text-[#FFB400] mb-2 uppercase font-bold">DYNAMIC NPSHa HYDRAULIC EQUATION</div>
-                NPSH<span className="text-xs font-sans">a</span> = P<span className="text-xs font-sans">atm</span> + H<span className="text-xs font-sans">static_suction</span> - H<span className="text-xs font-sans">friction_suction</span> - P<span className="text-xs font-sans">vapor_pressure</span>
-              </div>
-
-              <p className="text-xs text-slate-300 leading-relaxed">
-                To run cavitation-free, always maintain <strong>NPSHa &gt; NPSHr + 1.5m (5 ft)</strong> as a safety margin, or maintain a ratio <strong>NPSHa / NPSHr &gt; 1.3</strong>.
-              </p>
-            </div>
+          <div className="pt-4 border-t border-[#2A3F5F]/40 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="text-xs text-slate-400 leading-normal max-w-xl">
+              Tip: You can instantly export this sizing guide alongside your active calculator variables by printing your calculations. Keep this <strong>boiler feed pump calculation pdf</strong> checklist for field audits.
+            </p>
+            <button
+              onClick={handlePrint}
+              className="px-4 py-2 bg-[#1E90FF] hover:bg-[#1E90FF]/85 text-white rounded-lg text-xs font-mono font-bold flex items-center gap-2 transition shadow-lg cursor-pointer shrink-0"
+            >
+              <Printer className="h-3 w-3" /> Print PDF Checklist
+            </button>
           </div>
         </section>
 
-        {/* SECTION 5: NPSH & CAVITATION DETAILED BLOG */}
-        <section id="cavitation-guide" className="space-y-4">
-          <h2 className="text-2.5xl font-bold text-white tracking-tight">NPSH Sizing and Cavitation Prevention</h2>
+        {/* SECTION 10: FORMULA EXPLANATION */}
+        <section id="boiler-feed-pump-formula-explanation" className="space-y-6">
+          <h2 className="text-2.5xl font-bold text-white tracking-tight">Boiler Feed Pump Formula Explanation</h2>
           <p className="text-slate-300 text-sm leading-relaxed">
-            Sizing the suction line of a boiler feed pump is even more critical than sizing the discharge line. Because boiler water is taken from deaerator deaeration storage vessels at elevated saturation temperatures (typically 100°C to 140°C), the water is very close to its boiling point of vaporization. Any localized drop in pressure inside suction plumbing drops the water below vapor pressure, causing instant flash steam bubble creation.
+            Modern high-pressure <strong>boiler feed pump selection calculation</strong> systems rely on standard equations derived from the Hydraulic Institute Standards and the ASME Boiler and Pressure Vessel Code (BPVC). A robust sizing calculation relies on the following key equations:
           </p>
-          <p className="text-slate-300 text-sm leading-relaxed">
-            As these vapor bubbles flow into the high-pressure tip of the impeller blades, the pressure increases. This causes the bubbles to implode violently, creating localized shockwaves of up to 10,000 bar. This phenomenon, known as <strong>hydraulic cavitation</strong>, erodes stainless steel impeller blades, tears apart mechanical seals, and causes heavy rotor shaft vibrations that can shatter pump casing gaskets within hours of startup.
-          </p>
-        </section>
-
-        {/* SECTION 6: FAQ ACCORDION DISPLAY */}
-        <section id="faq-accordions" className="space-y-6">
-          <div className="flex items-center gap-2">
-            <HelpCircle className="h-6 w-6 text-[#FFB400]" />
-            <h2 className="text-2.5xl font-bold text-white tracking-tight">Frequently Asked Questions</h2>
-          </div>
-          <p className="text-slate-300 text-sm leading-relaxed mb-6">
-            Review detailed mechanical answers regarding boiler feed pump calculations, specific speeds, fluid mechanics, and codes:
-          </p>
-
           <div className="space-y-4">
-            {faqs.map((faq) => (
-              <div
-                key={faq.id}
-                className="bg-[#0D1B2A] rounded-xl border border-[#2A3F5F] overflow-hidden transition"
-              >
-                <button
-                  onClick={() => setOpenFaq(openFaq === faq.id ? null : faq.id)}
-                  className="w-full text-left py-4 px-5 font-bold text-sm text-white hover:text-[#1E90FF] transition flex justify-between items-center bg-[#101E35]/60 cursor-pointer"
-                >
-                  <span className="pr-4">{faq.question}</span>
-                  <ChevronDown
-                    className={`h-4 w-4 text-[#FFB400] shrink-0 transition-transform duration-300 ${
-                      openFaq === faq.id ? 'rotate-180' : ''
-                    }`}
-                  />
-                </button>
-                <AnimatePresence initial={false}>
-                  {openFaq === faq.id && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="p-5 border-t border-[#2A3F5F] text-xs text-slate-300 leading-relaxed bg-[#050C16]/50">
-                        {faq.answer}
-                        <div className="mt-3 flex items-center gap-1 text-[10px] font-mono text-[#00C896]">
-                          <span>Standards Compliance: ASME Section I and Hydraulic Institute Code Standards</span>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+            <div className="bg-[#0D1B2A] rounded-xl border border-[#2A3F5F] p-6 space-y-2">
+              <h3 className="text-xs font-mono text-[#00C896] uppercase font-bold tracking-wider">
+                1. Mass to Volumetric Flow Conversion
+              </h3>
+              <p className="text-xs text-[#A8B8D0] leading-relaxed">
+                Centrifugal pumps are dynamic, volumetric displacement devices, but boilers operate on mass balance. The flow conversion must correct for heat expansion:
+              </p>
+              <div className="bg-[#050C16] p-3 rounded font-mono text-xs text-[#1E90FF] text-center">
+                Q (m³/hr) = m (kg/hr) / ρ (kg/m³)
               </div>
-            ))}
+            </div>
+
+            <div className="bg-[#0D1B2A] rounded-xl border border-[#2A3F5F] p-6 space-y-2">
+              <h3 className="text-xs font-mono text-[#00C896] uppercase font-bold tracking-wider">
+                2. Power Fluid-Dynamics Model
+              </h3>
+              <p className="text-xs text-[#A8B8D0] leading-relaxed">
+                The mechanical brake power represents the actual torque matching required shaft speeds, calculated as:
+              </p>
+              <div className="bg-[#050C16] p-3 rounded font-mono text-xs text-[#1E90FF] text-center">
+                Shaft Power (kW) = [Q (m³/hr) × TDH (m) × Specific Gravity] / [367.2 × η_pump]
+              </div>
+            </div>
+
+            <div className="bg-[#0D1B2A] rounded-xl border border-[#2A3F5F] p-6 space-y-3 font-sans">
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Understanding these key physical equations is essential to answer common <strong>boiler feed pump interview questions</strong> during recruitment processes or technical audits. Recruits are frequently asked to derive deaerator suction height calculations and explain why deaerator vapor pressure cancels out the static suction pressure.
+              </p>
+            </div>
           </div>
         </section>
 
-        {/* SECTION 7: RELATED CALCULATOR CARD DECK */}
+        {/* SECTION 11: IN THERMAL POWER PLANT */}
+        <section id="boiler-feed-pump-in-thermal-power-plant" className="space-y-4">
+          <h2 className="text-2.5xl font-bold text-white tracking-tight">Boiler Feed Pump in Thermal Power Plant</h2>
+          <p className="text-slate-300 text-sm leading-relaxed">
+            The function of a <strong>boiler feed pump in thermal power plant</strong> systems is critical, as it acts as the primary fluid driver for the entire steam-water closed loop. High-capacity power stations generate massive utility pressures, typically requiring multistage, horizontal split-case or double-case barrel pumps. Proper maintenance, including regular inspection of shaft seals and bearings, is critical to prevent unplanned outages.
+          </p>
+          <p className="text-slate-300 text-sm leading-relaxed">
+            A correct <strong>boiler feed pump startup procedure</strong> is vital to protect internal wear rings and prevent rotative seizure from thermal shock. The startup process typically involves: (1) opening suction valves completely to verify fluid flow, (2) cracking warm-up lines to gradually raise casing temperatures and balance thermal expansion, (3) validating mechanical seal flush flow lines, (4) starting the pump against a closed discharge valve while maintaining a minimum flow bypass, and (5) slowly throttle-opening the discharge valves to establish smooth steam drum injection. Following this disciplined procedure prevents thermal deflection, bearing wear, and impeller pitting damage.
+          </p>
+        </section>
+
+        {/* RELATED CALCULATORS SECTION */}
         <section id="related-calculators" className="space-y-6">
           <div className="border-t border-[#2A3F5F] pt-12">
             <h2 className="text-xl font-bold text-white tracking-wider mb-2 flex items-center gap-2 font-mono">

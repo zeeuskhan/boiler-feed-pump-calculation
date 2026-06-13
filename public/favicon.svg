@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <!-- Definitions for gradients and shadows -->
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E90FF" />
+      <stop offset="100%" stop-color="#00C896" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0C1524" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <!-- Background Base Container -->
+  <rect width="512" height="512" rx="128" fill="#07111E" filter="url(#shadow)" />
+  <rect width="480" height="480" x="16" y="16" rx="112" fill="none" stroke="url(#grad)" stroke-width="8" opacity="0.4" />
+
+  <!-- Fluid Flow Ring (Circular casing of a pump) -->
+  <circle cx="256" cy="256" r="160" fill="none" stroke="url(#grad)" stroke-width="24" stroke-dasharray="10 3" opacity="0.9" />
+
+  <!-- Centrifugal Impeller Center Hub -->
+  <circle cx="256" cy="256" r="32" fill="#07111E" stroke="url(#grad)" stroke-width="12" />
+
+  <!-- Impeller Vanes (Blades rotating) -->
+  <path d="M 256,224 C 230,224 210,190 220,165" fill="none" stroke="url(#grad)" stroke-width="14" stroke-linecap="round" />
+  <path d="M 288,256 C 288,282 322,302 347,292" fill="none" stroke="url(#grad)" stroke-width="14" stroke-linecap="round" />
+  <path d="M 256,288 C 282,288 302,322 292,347" fill="none" stroke="url(#grad)" stroke-width="14" stroke-linecap="round" />
+  <path d="M 224,256 C 224,230 190,210 165,220" fill="none" stroke="url(#grad)" stroke-width="14" stroke-linecap="round" />
+
+  <!-- Curled intermediate secondary vanes -->
+  <path d="M 278,234 C 298,220 310,180 300,155" fill="none" stroke="#00C896" stroke-width="10" stroke-linecap="round" opacity="0.8" />
+  <path d="M 234,278 C 214,292 202,332 212,357" fill="none" stroke="#1E90FF" stroke-width="10" stroke-linecap="round" opacity="0.8" />
+  <path d="M 278,278 C 292,298 332,310 357,300" fill="none" stroke="#00C896" stroke-width="10" stroke-linecap="round" opacity="0.8" />
+  <path d="M 234,234 C 220,214 180,202 155,212" fill="none" stroke="#1E90FF" stroke-width="10" stroke-linecap="round" opacity="0.8" />
+
+  <!-- Pressurized dynamic energy arrow wrapper -->
+  <path d="M 330,170 A 130,130 0 0,1 386,256 L 416,256" fill="none" stroke="#00C896" stroke-width="12" stroke-linecap="round" />
+  <polygon points="416,244 440,256 416,268" fill="#00C896" />
+
+  <!-- Suction inlet center overlay representing the pipe core -->
+  <circle cx="256" cy="256" r="14" fill="#00C896" />
+</svg>
