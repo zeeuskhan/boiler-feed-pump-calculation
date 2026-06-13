@@ -300,4 +300,10 @@ Yes, this online boiler feed pump calculator is completely free.
 
 Use the free calculator here:
 
+## Project Links
+
+🔗 Free Boiler Feed Pump Calculation Tool:
 https://boilerpumpcalc.vercel.app/
+
+📘 Boiler Feed Pump Calculation Documentation:
+https://zeeuskhan.github.io/boiler-feed-pump-calculation/
