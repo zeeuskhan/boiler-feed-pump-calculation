@@ -2034,23 +2034,37 @@ export default function App() {
 
       {/* FOOTER */}
       <footer className="mt-24 border-t border-[#2A3F5F] bg-[#07111E] py-12 px-6 no-print">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-xs text-slate-400 no-print">
-          <div className="space-y-2 text-center md:text-left">
-            <div className="flex items-center gap-2 justify-center md:justify-start">
-              <span className="h-2 w-2 rounded-full bg-[#00C896]" />
-              <p className="font-bold text-slate-200">Thermosolve Boiler Feed Pump Calculation Suite (ASME Section I)</p>
+        <div className="max-w-7xl mx-auto space-y-8 no-print">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8 text-xs text-slate-400">
+            <div className="space-y-2 text-center md:text-left">
+              <div className="flex items-center gap-2 justify-center md:justify-start">
+                <span className="h-2 w-2 rounded-full bg-[#00C896]" />
+                <p className="font-bold text-slate-200">Thermosolve Boiler Feed Pump Calculation Suite (ASME Section I)</p>
+              </div>
+              <p className="max-w-md leading-relaxed text-[10px] text-slate-400">
+                Disclaimer: Sizing calculations provided by Thermosolve are for preliminary estimation and educational mock purposes only. Always coordinate final impeller and trim dimensions with certified manufacturer curves before procurement.
+              </p>
             </div>
-            <p className="max-w-md leading-relaxed text-[10px] text-slate-400">
-              Disclaimer: Sizing calculations provided by Thermosolve are for preliminary estimation and educational mock purposes only. Always coordinate final impeller and trim dimensions with certified manufacturer curves before procurement.
-            </p>
+            <div className="text-center md:text-right space-y-2">
+              <p className="font-mono text-[9px] tracking-wide">
+                Last Updated: <span className="text-[#FFB400] font-bold">2026 Premium Edition</span>
+              </p>
+              <p className="text-slate-500">
+                © {new Date().getFullYear()} Thermosolve Systems, LLC. All rights engineered under ASME guidelines.
+              </p>
+            </div>
           </div>
-          <div className="text-center md:text-right space-y-2">
-            <p className="font-mono text-[9px] tracking-wide">
-              Last Updated: <span className="text-[#FFB400] font-bold">2026 Premium Edition</span>
-            </p>
-            <p className="text-slate-500">
-              © {new Date().getFullYear()} Thermosolve Systems, LLC. All rights engineered under ASME guidelines.
-            </p>
+
+          <div className="border-t border-[#2A3F5F]/40 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-400">
+            <span className="text-slate-300 font-semibold">Open Source Boiler Feed Pump Calculation Project</span>
+            <a 
+              href="https://github.com/zeeuskhan/boiler-feed-pump-calculation"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#1E90FF] hover:text-[#1E90FF]/85 hover:underline transition font-medium"
+            >
+              View Boiler Feed Pump Calculation Source Code on GitHub
+            </a>
           </div>
         </div>
       </footer>
