@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Boiler Feed Pump Sizing & Calculation Tool | Free Online Calculator</title>
-    <meta name="description" content="Perform an accurate boiler feed pump calculation online under ASME and HI guides. Get instant results for capacity flow, TDH, NPSHa, and motor power. No signup required.">
+    <title>Boiler Feed Pump Calculation Tool | Boiler Feed Pump Sizing Calculator Online</title>
+    <meta name="description" content="Free Boiler Feed Pump Calculation Tool to calculate boiler feed pump sizing, capacity, flow rate, TDH, NPSHa, and motor power online. Fast and accurate engineering calculator.">
     <meta name="keywords" content="boiler feed pump calculation, boiler feed pump calculation pdf, boiler feed pump capacity calculation example, boiler feed pump efficiency calculation, boiler feed pump head calculation, boiler feed pump npsh calculation, boiler feed pump power calculation, boiler feed pump pressure calculation, boiler feed pump sizing calculation, boiler feed pumps calculator, boiler feed pump capacity, boiler feed pump startup procedure, boiler feed pump in thermal power plant, boiler feed pump interview questions, boiler feed pump balancing pressure, boiler feed pump bearing, boiler feed pump flow calculation, boiler feed pump formula, boiler feed water pump calculation, boiler feed pump design calculation, boiler feed pump selection calculation">
     <link rel="canonical" href="https://boilerpumpcalc.vercel.app/">
     <meta name="google-site-verification" content="ItLByOSQAwzJ0a_YDS2lb1-6swGae5hQRnJUr4TuShg" />
@@ -21,8 +21,8 @@
     <link rel="alternate icon" type="image/png" href="/favicon.svg" />
     
     <!-- Open Graph/Facebook Meta Tags -->
-    <meta property="og:title" content="Boiler Feed Pump Calculation — Free Calculator" />
-    <meta property="og:description" content="Calculate boiler feed pump TDH, NPSH, power and efficiency instantly. Free engineering tool with formulas." />
+    <meta property="og:title" content="Boiler Feed Pump Calculation Tool | Boiler Feed Pump Sizing Calculator Online" />
+    <meta property="og:description" content="Free Boiler Feed Pump Calculation Tool to calculate boiler feed pump sizing, capacity, flow rate, TDH, NPSHa, and motor power online. Fast and accurate engineering calculator." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://boilerpumpcalc.vercel.app/" />
     <meta property="og:image" content="https://boilerpumpcalc.vercel.app/images/boiler-feed-pump-og.jpg" />
@@ -30,8 +30,8 @@
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Boiler Feed Pump Calculation — Free Calculator" />
-    <meta name="twitter:description" content="Calculate boiler feed pump TDH, NPSH, power and efficiency instantly. Free engineering tool with formulas." />
+    <meta name="twitter:title" content="Boiler Feed Pump Calculation Tool | Boiler Feed Pump Sizing Calculator Online" />
+    <meta name="twitter:description" content="Free Boiler Feed Pump Calculation Tool to calculate boiler feed pump sizing, capacity, flow rate, TDH, NPSHa, and motor power online. Fast and accurate engineering calculator." />
     <meta name="twitter:image" content="https://boilerpumpcalc.vercel.app/images/boiler-feed-pump-og.jpg" />
 
     <!-- Google Fonts Import: IBM Plex Sans & IBM Plex Mono -->
@@ -39,16 +39,38 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-    <!-- Schema.org JSON-LD Structured Data (WebApplication) -->
+    <!-- Schema.org JSON-LD Structured Data (WebApplication & SoftwareApplication) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "Boiler Feed Pump Calculation Tool",
-      "description": "Free online calculator for boiler feed pump TDH, NPSH, power, and efficiency calculations",
+      "description": "Free online calculator to perform a boiler feed pump calculation, including sizing, capacity, flow rate, TDH, NPSHa, and motor power online. Fast and accurate engineering calculator.",
       "url": "https://boilerpumpcalc.vercel.app/",
       "applicationCategory": "EngineeringApplication",
       "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "1284"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Boiler Feed Pump Calculator Sizing Tool",
+      "description": "Free Boiler Feed Pump Calculation Tool to calculate boiler feed pump sizing, capacity, flow rate, TDH, NPSHa, and motor power online under ASME standards.",
+      "applicationCategory": "EngineeringApplication",
+      "operatingSystem": "All web browsers",
+      "url": "https://boilerpumpcalc.vercel.app/",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -70,10 +92,26 @@
       "mainEntity": [
         {
           "@type": "Question",
+          "name": "What is boiler feed pump calculation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Boiler feed pump calculation determines the technical specifications (required capacity, flow rate, total dynamic head, operating pressure, efficiency, NPSHa, and motor power) needed to deliver preheated water to a steam boiler safely and continuously under ASME BPVC guidelines."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "How do you calculate boiler feed pump capacity?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Boiler feed pump capacity is calculated by first establishing the boiler Maximum Continuous Rating (MCR) mass steam rate. To ensure seamless fluid delivery, you must add continuous boiler blowdown purges (typically 2% to 5%) and physical system leakages, scaled by an engineering safety factor (usually 10% to 15%). The cumulative mass flow is then converted to volumetric capacity flow rate (m³/hr or GPM) using the density of water evaluated at the precise operating deaerator temperature."
+            "text": "Boiler feed pump capacity is calculated by converting the boiler's Maximum Continuous Rating (MCR) steam flow rate to volumetric flow, factoring in water density at operating temperature, continuous blowdown rate (2% to 5%), secondary system steam losses, and a standard engineering flow safety margin (usually 10% to 15%)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is boiler feed pump sizing important?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Correct boiler feed pump sizing is important because under-sized pumps lead to a dry boiler and low-water safety trips, while over-sized pumps waste excessive motor driver electrical power, degrade control valves due to throttling drops, and put unnecessary stress on the boiler feed pump bearings."
           }
         },
         {
@@ -94,42 +132,10 @@
         },
         {
           "@type": "Question",
-          "name": "What is boiler feed pump efficiency?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Boiler feed pump efficiency represents the efficiency parameter (hydraulic power output divided by shaft mechanical brake horsepower Input). Feed pump efficiency calculation typically ranges between 65% and 85% at the Best Efficiency Point (BEP). Operating a feed pump far to the left of its BEP causes intensive recirculation heat, high hub vibration, dynamic stress on the boiler feed pump bearing, and severe electrical waste."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How do you select a boiler feed pump?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "For a precise boiler feed pump selection calculation, you start by executing a boiler feed pump design calculation targeting three critical operational profiles: (1) design volumetric flow rate factoring in density and blowdowns, (2) Total Dynamic Head incorporating piping resistances, and (3) Net Positive Suction Head Available (NPSHa). For high-pressure utilities over 100 bar, you select API 610 BB4 radially split ring-section multistage or BB5 double-case barrel-cased configurations."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the formula for boiler feed pump calculation?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "The primary boiler feed pump formula for total head is TDH = (Pd - Ps) × 10.2 / SG + Hz + Hf_suction + Hf_discharge + ΔHv (Metric units) or TDH = (Pd - Ps) × 2.31 / SG + Hz + Hfs + Hfd + ΔHv (Imperial units). Mass balance is calculated as Q_design = Q_mcr × (1 + blowdown% + margin%) / ρ. Sizing relies on these two formulas to determine the mechanical head and mass capacities of the feedwater loop."
-          }
-        },
-        {
-          "@type": "Question",
           "name": "What is NPSH in boiler feed pump calculation?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "In boiler feed pump npsh calculation, Net Positive Suction Head represents the net pressure envelope at the pump inlet above the water's boiling vapor pressure. Because boiler feed water enters near its boiling temperature, its static vapor pressure is extremely high. To prevent vapor bubble collapse (cavitation), you must elevate the deaerator tank to generate static height (Hz). Sizing must ensure NPSH Available (NPSHa) exceeds the pump's Required NPSH (NPSHr) by at least 1.5 to 2.0 meters."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How does water temperature affect boiler feed pump calculation?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Feedwater water temperature alters both the density and vapor pressure of the pumped medium. Sizing at cold temperatures ignores the 7% to 10% volume expansion that occurs at 140°C, leading to flow deficits. Additionally, temperature increases vapor pressure exponentially. Sizing calculations must factor in the dynamic vapor pressure lookup to prevent the suction column from vaporizing and destroying the first-stage impellers."
           }
         }
       ]

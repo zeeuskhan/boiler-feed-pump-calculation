@@ -487,44 +487,46 @@ export default function App() {
   const faqs: FAQItem[] = [
     {
       id: 'faq-1',
-      question: 'How do you calculate boiler feed pump capacity?',
-      answer: 'Boiler feed pump capacity is calculated by first establishing the boiler Maximum Continuous Rating (MCR) mass steam rate (in kg/hr or lb/hr). To ensure seamless fluid delivery, you must add continuous boiler blowdown purges (typically 2% to 5%) and physical system leakages, scaled by an engineering safety factor (usually 10% to 15%). The cumulative mass flow is then converted to volumetric capacity flow rate (m³/hr or GPM) using the density of water evaluated at the precise operating deaerator temperature. A pump sized with insufficient continuous boiler feed pump capacity will trigger safety sensor low-level trips in the stream drums.'
-    },
+      question: 'What is boiler feed pump calculation?',
+      text: 'What is boiler feed pump calculation?',
+      answer: 'Boiler feed pump calculation determines the technical specifications (required capacity, flow rate, total dynamic head, operating pressure, efficiency, NPSHa, and motor power) needed to deliver preheated water to a steam boiler safely and continuously under ASME BPVC guidelines. This calculation forms the operational basis for system safety, thermal output integrity, and mechanical component selection.',
+      schemaAnswer: 'Boiler feed pump calculation determines the technical specifications (required capacity, flow rate, total dynamic head, operating pressure, efficiency, NPSHa, and motor power) needed to deliver preheated water to a steam boiler safely and continuously under ASME BPVC guidelines.'
+    } as any,
     {
       id: 'faq-2',
-      question: 'What is boiler feed pump head calculation?',
-      answer: 'A boiler feed pump head calculation determines the Total Dynamic Head (TDH) required to force water into the steam drum. Mathematically, BFP head calculation is: TDH = [(P_discharge - P_suction) × C / SG] + Hz + Hf_suction + Hf_discharge + Hv. Here, P_discharge measures boiler operating pressure plus control valve drops; P_suction is the deaerator vessel pressure; C is the unit constant; SG is the feedwater specific gravity; Hz represents static elevation; Hf stands for piping friction resistance losses; and Hv is the velocity acceleration head. This head calculation guarantees that feedwater easily overcomes system back-pressure.'
-    },
+      question: 'How do you calculate boiler feed pump capacity?',
+      text: 'How do you calculate boiler feed pump capacity?',
+      answer: 'Boiler feed pump capacity is calculated by converting the boiler\'s Maximum Continuous Rating (MCR) steam flow rate to volumetric flow, factoring in water density at operating temperature, continuous blowdown rate (2% to 5%), secondary system steam losses, and a standard engineering flow safety margin (usually 10% to 15%). A pump sized with insufficient continuous boiler feed pump capacity will trigger safety sensor low-level trips in the steam drums.',
+      schemaAnswer: 'Boiler feed pump capacity is calculated by converting the boiler\'s Maximum Continuous Rating (MCR) steam flow rate to volumetric flow, factoring in water density at operating temperature, continuous blowdown rate (2% to 5%), secondary system steam losses, and a standard engineering flow safety margin (usually 10% to 15%).'
+    } as any,
     {
       id: 'faq-3',
-      question: 'How to calculate boiler feed pump power?',
-      answer: 'To calculate boiler feed pump power, first solve for the hydraulic fluid power: Hydraulic Power (kW) = [Volumetric Flow (m³/s) × TDH (m) × Hot Water Density (kg/m³) × g] / 1000. Under mechanical design parameters, the actual shaft brake power (BHP) is computed as: Brake Power = Hydraulic Power / Pump Mechanical Efficiency. Finally, determine electric motor nameplate power: Motor Power = Brake Power / Motor Efficiency × Driver Safety Margin (typically 1.10 to 1.15). For boiler feed water pump calculation during cold commissioning, you must optimize for cold density (1000 kg/m³) to prevent motor driver overload.'
-    },
+      question: 'Why is boiler feed pump sizing important?',
+      text: 'Why is boiler feed pump sizing important?',
+      answer: 'Correct boiler feed pump sizing is important because under-sized pumps lead to a dry boiler and low-water safety trips, while over-sized pumps waste excessive motor driver electrical power, degrade control valves due to throttling drops, and put unnecessary stress on the boiler feed pump bearings. Proper sizing aligns pump operation with its Best Efficiency Point (BEP).',
+      schemaAnswer: 'Correct boiler feed pump sizing is important because under-sized pumps lead to a dry boiler and low-water safety trips, while over-sized pumps waste excessive motor driver electrical power, degrade control valves due to throttling drops, and put unnecessary stress on the boiler feed pump bearings.'
+    } as any,
     {
       id: 'faq-4',
-      question: 'What is boiler feed pump efficiency?',
-      answer: 'Boiler feed pump efficiency represents the efficiency parameter (hydraulic power output divided by shaft mechanical brake horsepower Input). Feed pump efficiency calculation typically ranges between 65% and 85% at the Best Efficiency Point (BEP). Operating a feed pump far to the left of its BEP causes intensive recirculation heat, high hub vibration, dynamic stress on the boiler feed pump bearing, and severe electrical waste. Balancing the impeller eye profile can restore optimum physical efficiency parameters.'
-    },
+      question: 'What is boiler feed pump head calculation?',
+      text: 'What is boiler feed pump head calculation?',
+      answer: 'A boiler feed pump head calculation determines the Total Dynamic Head (TDH) required to force water into the steam drum. Mathematically, BFP head calculation is: TDH = [(P_discharge - P_suction) × C / SG] + Hz + Hf_suction + Hf_discharge + Hv. Here, P_discharge measures boiler operating pressure plus control valve drops (bar); P_suction is the deaerator vessel pressure (bar); C is the unit constant (10.2 for Metric, 2.31 for Imperial); SG is the feedwater specific gravity; Hz represents static elevation; Hf stands for piping friction resistance losses; and Hv is the velocity acceleration head.',
+      schemaAnswer: 'A boiler feed pump head calculation determines the Total Dynamic Head (TDH) required to force water into the steam drum. Mathematically, BFP head calculation is: TDH = [(P_discharge - P_suction) × C / SG] + Hz + Hf_suction + Hf_discharge + Hv.'
+    } as any,
     {
       id: 'faq-5',
-      question: 'How do you select a boiler feed pump?',
-      answer: 'For a precise boiler feed pump selection calculation, you start by executing a boiler feed pump design calculation targeting three critical operational profiles: (1) design volumetric flow rate factoring in density and blowdowns, (2) Total Dynamic Head incorporating piping resistances, and (3) Net Positive Suction Head Available (NPSHa). For high-pressure utilities over 100 bar, you select API 610 BB4 radially split ring-section multistage or BB5 double-case barrel-cased configurations. For low-pressure package systems, single-stage centrifugal pumps may suffice.'
-    },
+      question: 'How to calculate boiler feed pump power?',
+      text: 'How to calculate boiler feed pump power?',
+      answer: 'To calculate boiler feed pump power, first solve for the hydraulic fluid power: Hydraulic Power (kW) = [Volumetric Flow (m³/s) × TDH (m) × Hot Water Density (kg/m³) × g] / 1000. Under mechanical design parameters, the actual shaft brake power (BHP) is computed as: Brake Power = Hydraulic Power / Pump Mechanical Efficiency. Finally, determine electric motor nameplate power: Motor Power = Brake Power / Motor Efficiency × Driver Safety Margin (typically 1.10 to 1.15). For boiler feed water pump calculation during cold commissioning, you must optimize for cold density (1000 kg/m³) to prevent motor driver overload.',
+      schemaAnswer: 'To calculate boiler feed pump power, first solve for the hydraulic fluid power: Hydraulic Power (kW) = [Volumetric Flow (m³/s) × TDH (m) × Hot Water Density (kg/m³) × g] / 1000. Under mechanical design parameters, the actual shaft brake power (BHP) is computed as: Brake Power = Hydraulic Power / Pump Mechanical Efficiency. Finally, determine electric motor nameplate power: Motor Power = Brake Power / Motor Efficiency × Driver Safety Margin (typically 1.10 to 1.15).'
+    } as any,
     {
       id: 'faq-6',
-      question: 'What is the formula for boiler feed pump calculation?',
-      answer: 'The primary boiler feed pump formula for total head is TDH = (Pd - Ps) × 10.2 / SG + Hz + Hf_suction + Hf_discharge + ΔHv (Metric units) or TDH = (Pd - Ps) × 2.31 / SG + Hz + Hfs + Hfd + ΔHv (Imperial units). Mass balance is calculated as Q_design = Q_mcr × (1 + blowdown% + margin%) / ρ. Sizing relies on these two formulas to determine the mechanical head and mass capacities of the feedwater loop.'
-    },
-    {
-      id: 'faq-7',
       question: 'What is NPSH in boiler feed pump calculation?',
-      answer: 'In boiler feed pump npsh calculation, Net Positive Suction Head represents the net pressure envelope at the pump inlet above the water\'s boiling vapor pressure. Because boiler feed water enters near its boiling temperature, its static vapor pressure is extremely high. To prevent vapor bubble collapse (cavitation), you must elevate the deaerator tank to generate static height (Hz). Sizing must ensure NPSH Available (NPSHa) exceeds the pump\'s Required NPSH (NPSHr) by at least 1.5 to 2.0 meters.'
-    },
-    {
-      id: 'faq-8',
-      question: 'How does water temperature affect boiler feed pump calculation?',
-      answer: 'Feedwater water temperature alters both the density and vapor pressure of the pumped medium. Sizing at cold temperatures ignores the 7% to 10% volume expansion that occurs at 140°C, leading to flow deficits. Additionally, temperature increases vapor pressure exponentially. Sizing calculations must factor in the dynamic vapor pressure lookup to prevent the suction column from vaporizing and destroying the first-stage impellers.'
-    }
+      text: 'What is NPSH in boiler feed pump calculation?',
+      answer: 'In boiler feed pump npsh calculation, Net Positive Suction Head represents the net pressure envelope at the pump inlet above the water\'s boiling vapor pressure. Because boiler feed water enters near its boiling temperature, its static vapor pressure is extremely high. To prevent vapor bubble collapse (cavitation), you must elevate the deaerator tank to generate static height (Hz). Sizing must ensure NPSH Available (NPSHa) exceeds the pump\'s Required NPSH (NPSHr) by at least 1.5 to 2.0 meters.',
+      schemaAnswer: 'In boiler feed pump npsh calculation, Net Positive Suction Head represents the net pressure envelope at the pump inlet above the water\'s boiling vapor pressure. Because boiler feed water enters near its boiling temperature, its static vapor pressure is extremely high. To prevent vapor bubble collapse (cavitation), you must elevate the deaerator tank to generate static height (Hz). Sizing must ensure NPSH Available (NPSHa) exceeds the pump\'s Required NPSH (NPSHr) by at least 1.5 to 2.0 meters.'
+    } as any
   ];
 
   const relatedTools: RelatedTool[] = [
@@ -634,10 +636,10 @@ export default function App() {
         </div>
         
         <h1 className="text-3.5xl md:text-5xl font-extrabold text-white tracking-tight leading-tight select-none">
-          Boiler Feed Pump <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-[#1E90FF] to-[#00C896]">Calculation</span> & Sizing Tool
+          Boiler Feed Pump <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-[#1E90FF] to-[#00C896]">Calculation</span> Tool
         </h1>
         <p className="mt-3 text-base text-[#A8B8D0] max-w-3xl leading-relaxed">
-          Free, professional-grade online calculator for boiler feed pump calculation. Solve Total Dynamic Head (TDH), water volumetric sizing capacity flow rates, NPSH available buffers, and electrical driver motor power demands instantly using verified ASME Section I thermal guidelines.
+          The free online boiler feed pump calculation tool is a professional-grade engineering calculator for boiler feed pump calculation. Calculate boiler feed pump sizing, capacity, flow rate, Total Dynamic Head (TDH), NPSH available buffers, and motor power demands instantly using verified ASME Section I thermal guidelines.
         </p>
 
         {/* TRUST BADGE ROW */}
@@ -1974,6 +1976,40 @@ export default function App() {
           <p className="text-slate-300 text-sm leading-relaxed">
             A correct <strong>boiler feed pump startup procedure</strong> is vital to protect internal wear rings and prevent rotative seizure from thermal shock. The startup process typically involves: (1) opening suction valves completely to verify fluid flow, (2) cracking warm-up lines to gradually raise casing temperatures and balance thermal expansion, (3) validating mechanical seal flush flow lines, (4) starting the pump against a closed discharge valve while maintaining a minimum flow bypass, and (5) slowly throttle-opening the discharge valves to establish smooth steam drum injection. Following this disciplined procedure prevents thermal deflection, bearing wear, and impeller pitting damage.
           </p>
+        </section>
+
+        {/* SECTION 12: FREQUENTLY ASKED QUESTIONS */}
+        <section id="faq-section" className="space-y-6">
+          <h2 className="text-2.5xl font-bold text-white tracking-tight">Frequently Asked Questions</h2>
+          <p className="text-slate-300 text-sm leading-relaxed">
+            Get expert, verified answers to the most common queries regarding <strong>boiler feed pump calculation</strong>, system sizing, capacity flow rates, and fluid power dynamics.
+          </p>
+          <div className="space-y-4">
+            {faqs.map((faq) => {
+              const isOpen = openFaq === faq.id;
+              return (
+                <div 
+                  key={faq.id} 
+                  className="bg-[#0D1B2A] rounded-xl border border-[#2A3F5F] overflow-hidden transition-all duration-300 hover:border-[#1E90FF]/40"
+                >
+                  <button
+                    onClick={() => setOpenFaq(isOpen ? null : faq.id)}
+                    className="w-full flex items-center justify-between p-5 text-left text-white hover:text-[#1E90FF] transition-colors focus:outline-none"
+                  >
+                    <span className="font-semibold text-sm md:text-base pr-4">{faq.question}</span>
+                    <span className="shrink-0 text-slate-400">
+                      <ChevronDown className={`h-5 w-5 transition-transform duration-300 ${isOpen ? 'rotate-180 text-[#1E90FF]' : ''}`} />
+                    </span>
+                  </button>
+                  {isOpen && (
+                    <div className="p-5 pt-0 border-t border-[#2A3F5F]/40 text-slate-300 text-xs md:text-sm leading-relaxed bg-[#0A1624]">
+                      {faq.answer}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </section>
 
         {/* RELATED CALCULATORS SECTION */}
