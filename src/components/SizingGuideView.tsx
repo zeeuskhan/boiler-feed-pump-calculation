@@ -174,11 +174,12 @@ export default function SizingGuideView({ unitSystem }: SizingGuideViewProps) {
             {/* Selector fields */}
             <div className="space-y-4 mb-5">
               <div>
-                <label className="block text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                <label htmlFor="pipeline-flow" className="block text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-1.5">
                   Pipeline Volumetric Flow (Q)
                 </label>
                 <div className="relative">
                   <input
+                    id="pipeline-flow"
                     type="number"
                     step="any"
                     value={pipelineFlow}
@@ -192,11 +193,12 @@ export default function SizingGuideView({ unitSystem }: SizingGuideViewProps) {
               </div>
 
               <div>
-                <label className="block text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                <label htmlFor="target-velocity" className="block text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-1.5">
                   Design Target Velocity (v)
                 </label>
                 <div className="relative">
                   <input
+                    id="target-velocity"
                     type="number"
                     step="any"
                     value={targetVelocity}

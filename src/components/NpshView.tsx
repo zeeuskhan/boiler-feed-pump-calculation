@@ -149,11 +149,12 @@ export default function NpshView({ unitSystem }: NpshViewProps) {
           {/* Form Fields */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
             <div>
-              <label className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2 flex items-center gap-1.5">
+              <label htmlFor="deaerator-pressure" className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2 flex items-center gap-1.5">
                 Deaerator Gage Pressure (P_g) <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <input
+                  id="deaerator-pressure"
                   type="number"
                   step="any"
                   value={deaeratorPressure}
@@ -168,11 +169,12 @@ export default function NpshView({ unitSystem }: NpshViewProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2 flex items-center gap-1.5">
+              <label htmlFor="water-temp" className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2 flex items-center gap-1.5">
                 Feedwater Peak Temperature (T) <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <input
+                  id="water-temp"
                   type="number"
                   step="any"
                   value={waterTemp}
@@ -187,11 +189,12 @@ export default function NpshView({ unitSystem }: NpshViewProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2 flex items-center gap-1.5">
+              <label htmlFor="static-elevation" className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2 flex items-center gap-1.5">
                 Suction Vertical Static Height (H_z) <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <input
+                  id="static-elevation"
                   type="number"
                   step="any"
                   value={staticElevation}
@@ -206,11 +209,12 @@ export default function NpshView({ unitSystem }: NpshViewProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2 flex items-center gap-1.5">
+              <label htmlFor="friction-loss" className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2 flex items-center gap-1.5">
                 Suction Pipfriction Drop (h_fs) <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <input
+                  id="friction-loss"
                   type="number"
                   step="any"
                   value={frictionLoss}
@@ -225,18 +229,19 @@ export default function NpshView({ unitSystem }: NpshViewProps) {
             </div>
 
             <div className="md:col-span-2">
-              <label className="block text-xs font-mono font-bold text-[#FFB400] uppercase tracking-wide mb-2 flex items-center gap-1.5">
+              <label htmlFor="pump-npshr" className="block text-xs font-mono font-bold text-[#FFB400] uppercase tracking-wide mb-2 flex items-center gap-1.5">
                 Pump Manufacturer Required NPSHr (at BEP) <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <input
+                  id="pump-npshr"
                   type="number"
                   step="any"
                   value={pumpNpshr}
                   onChange={(e) => setPumpNpshr(parseFloat(e.target.value) || 0)}
                   className="w-full bg-[#0F2035] border border-[#2D3F5C] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#FFB400] transition"
                 />
-                <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-[#FFB400] select-none font-bold">
+                <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-[#FFB400] select-none">
                   {hUnit}
                 </span>
               </div>

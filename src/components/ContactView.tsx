@@ -60,16 +60,18 @@ export default function ContactView() {
                 className="space-y-4"
               >
                 <div className="pb-3 border-b border-[#2A3F5F]/20 mb-4">
+                  <h2 className="sr-only">Mechanical Sizing Consultation Form</h2>
                   <h3 className="font-bold text-white text-base">File a Mechanical Sizing Ticket</h3>
                   <p className="text-[10px] text-slate-400">Directly routed to our Sizing Helpdesk</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-1.5 font-bold">
+                    <label htmlFor="engineer-name" className="block text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-1.5">
                       Design Engineer Name <span className="text-red-500">*</span>
                     </label>
                     <input
+                      id="engineer-name"
                       type="text"
                       required
                       value={name}
@@ -80,10 +82,11 @@ export default function ContactView() {
                   </div>
 
                   <div>
-                    <label className="block text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-1.5 font-bold">
+                    <label htmlFor="engineer-email" className="block text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-1.5">
                       Business Email Address <span className="text-red-500">*</span>
                     </label>
                     <input
+                      id="engineer-email"
                       type="email"
                       required
                       value={email}
@@ -96,10 +99,11 @@ export default function ContactView() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                    <label htmlFor="company-name" className="block text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-1.5">
                       Company / Organization
                     </label>
                     <input
+                      id="company-name"
                       type="text"
                       value={company}
                       onChange={(e) => setCompany(e.target.value)}
@@ -109,10 +113,11 @@ export default function ContactView() {
                   </div>
 
                   <div>
-                    <label className="block text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                    <label htmlFor="boiler-spec" className="block text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-1.5">
                       Target Boiler Capacity & MCR Pressures
                     </label>
                     <input
+                      id="boiler-spec"
                       type="text"
                       value={boilerSpec}
                       onChange={(e) => setBoilerSpec(e.target.value)}
@@ -123,10 +128,11 @@ export default function ContactView() {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-1.5 font-bold">
+                  <label htmlFor="cavitation-msg" className="block text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-1.5">
                     Piping Layout Details & Cavitation History <span className="text-red-500">*</span>
                   </label>
                   <textarea
+                    id="cavitation-msg"
                     required
                     rows={4}
                     value={message}

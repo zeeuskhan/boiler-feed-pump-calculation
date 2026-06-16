@@ -168,11 +168,12 @@ export default function PowerView({ unitSystem }: PowerViewProps) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
             <div>
-              <label className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2">
+              <label htmlFor="flow-rate-val" className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2">
                 Operating Flow Rate (Q) <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <input
+                  id="flow-rate-val"
                   type="number"
                   step="any"
                   value={flowRate}
@@ -186,11 +187,12 @@ export default function PowerView({ unitSystem }: PowerViewProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2">
+              <label htmlFor="total-head-val" className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2">
                 Total Dynamic Head (TDH) <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <input
+                  id="total-head-val"
                   type="number"
                   step="any"
                   value={totalHead}
@@ -204,11 +206,12 @@ export default function PowerView({ unitSystem }: PowerViewProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2">
+              <label htmlFor="fluid-density-val" className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2">
                 Feedwater Design Density (ρ) <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <input
+                  id="fluid-density-val"
                   type="number"
                   step="any"
                   value={fluidDensity}
@@ -222,11 +225,12 @@ export default function PowerView({ unitSystem }: PowerViewProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2">
+              <label htmlFor="motor-rpm-val" className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2">
                 Motor Rotational Speed (N) <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <input
+                  id="motor-rpm-val"
                   type="number"
                   step="any"
                   value={motorRpm}
@@ -240,11 +244,12 @@ export default function PowerView({ unitSystem }: PowerViewProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2">
+              <label htmlFor="pump-eff-val" className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2">
                 Pump Best Efficiency Point (η_p) % <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <input
+                  id="pump-eff-val"
                   type="number"
                   max="99"
                   min="5"
@@ -259,11 +264,12 @@ export default function PowerView({ unitSystem }: PowerViewProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2">
+              <label htmlFor="motor-eff-val" className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2">
                 Electric Motor Efficiency Class % <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <input
+                  id="motor-eff-val"
                   type="number"
                   max="99"
                   min="10"
@@ -278,11 +284,12 @@ export default function PowerView({ unitSystem }: PowerViewProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2">
+              <label htmlFor="electricity-cost-val" className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2">
                 Local Electricity Grid Unit Rate <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <input
+                  id="electricity-cost-val"
                   type="number"
                   step="any"
                   value={electricityCost}
@@ -296,11 +303,12 @@ export default function PowerView({ unitSystem }: PowerViewProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2">
+              <label htmlFor="annual-hours-val" className="block text-xs font-mono font-bold text-slate-400 uppercase tracking-wide mb-2">
                 Continuous Operational Hours/Year <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <input
+                  id="annual-hours-val"
                   type="number"
                   max="8760"
                   min="0"

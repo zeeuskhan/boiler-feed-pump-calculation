@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, lazy, Suspense } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Activity,
@@ -33,18 +33,19 @@ import {
   FAQItem,
   RelatedTool
 } from './types';
-import AdBanner from './components/AdBanner';
-import SystemDiagram from './components/SystemDiagram';
-import PumpCurveChart from './components/PumpCurveChart';
+
+const AdBanner = lazy(() => import('./components/AdBanner'));
+const SystemDiagram = lazy(() => import('./components/SystemDiagram'));
+const PumpCurveChart = lazy(() => import('./components/PumpCurveChart'));
 
 // Modular Web Sizing Portal Subviews
-import NpshView from './components/NpshView';
-import PowerView from './components/PowerView';
-import SizingGuideView from './components/SizingGuideView';
-import SelectionChartView from './components/SelectionChartView';
-import AboutView from './components/AboutView';
-import ContactView from './components/ContactView';
-import LegalView from './components/LegalView';
+const NpshView = lazy(() => import('./components/NpshView'));
+const PowerView = lazy(() => import('./components/PowerView'));
+const SizingGuideView = lazy(() => import('./components/SizingGuideView'));
+const SelectionChartView = lazy(() => import('./components/SelectionChartView'));
+const AboutView = lazy(() => import('./components/AboutView'));
+const ContactView = lazy(() => import('./components/ContactView'));
+const LegalView = lazy(() => import('./components/LegalView'));
 
 export default function App() {
   // Global Unit Standard Toggle
@@ -638,7 +639,7 @@ export default function App() {
         <h1 className="text-3.5xl md:text-5xl font-extrabold text-white tracking-tight leading-tight select-none">
           Boiler Feed Pump <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-[#1E90FF] to-[#00C896]">Calculation</span> Tool
         </h1>
-        <p className="mt-3 text-base text-[#A8B8D0] max-w-3xl leading-relaxed">
+        <p className="mt-3 text-base text-[#CBDDF4] max-w-3xl leading-relaxed">
           The free online boiler feed pump calculation tool is a professional-grade engineering calculator for boiler feed pump calculation. Calculate boiler feed pump sizing, capacity, flow rate, Total Dynamic Head (TDH), NPSH available buffers, and motor power demands instantly using verified ASME Section I thermal guidelines.
         </p>
 
@@ -661,7 +662,9 @@ export default function App() {
 
       {/* Sponsor Banner Slot */}
       <div className="max-w-7xl mx-auto px-6">
-        <AdBanner />
+        <Suspense fallback={<div className="h-[90px] bg-[#101E35] border border-[#2A3F5F]/40 flex items-center justify-center rounded-lg shadow-inner text-slate-400 text-xs">Loading Sponsor Content...</div>}>
+          <AdBanner />
+        </Suspense>
       </div>
 
       {/* MAIN CALCULATOR CONTAINER */}
@@ -1178,7 +1181,7 @@ export default function App() {
                 <Sliders className="h-4 w-4 text-[#FFB400]" />
                 Thermosolve Panel
               </h3>
-              <span className="text-[9px] font-mono bg-[#1E90FF]/15 border border-[#1E90FF]/40 text-[#1E90FF] py-0.5 px-2 rounded-full font-bold">
+              <span className="text-[9px] font-mono bg-[#1E90FF] border border-[#1E90FF] text-white py-0.5 px-2 rounded-full font-bold">
                 PRO ACTIVE
               </span>
             </div>
@@ -1189,7 +1192,7 @@ export default function App() {
               {activeTab === CalcTab.Head && (
                 <div className="space-y-6">
                   <div>
-                    <span className="text-[10px] font-mono text-[#A8B8D0] uppercase tracking-wider block mb-1">
+                    <span className="text-[10px] font-mono text-[#CBDDF4] uppercase tracking-wider block mb-1">
                       Calculated Differential Pressure Head
                     </span>
                     <div className="flex items-baseline gap-1 bg-[#0F2035] py-2 px-3 rounded border border-[#2A3F5F]/50">
@@ -1203,7 +1206,7 @@ export default function App() {
                   </div>
 
                   <div>
-                    <span className="text-[10px] font-mono text-[#A8B8D0] uppercase tracking-wider block mb-1">
+                    <span className="text-[10px] font-mono text-[#CBDDF4] uppercase tracking-wider block mb-1">
                       System Piping friction losses (Sum)
                     </span>
                     <div className="flex items-baseline gap-1 bg-[#0F2035] py-2 px-3 rounded border border-[#2A3F5F]/50 font-mono text-slate-300">
@@ -1230,13 +1233,13 @@ export default function App() {
                     </div>
                   </div>
 
-                  <div className="bg-[#0D1B2A] p-3 rounded-lg border border-[#2A3F5F]/40 text-[10px] font-mono text-[#A8B8D0] space-y-2">
+                  <div className="bg-[#0D1B2A] p-3 rounded-lg border border-[#2A3F5F]/40 text-[10px] font-mono text-[#CBDDF4] space-y-2">
                     <p><strong>Physical Model Recommendation:</strong></p>
                     <p className="text-white font-bold">{headResults.recommendedRange}</p>
                     <button
                       type="button"
                       onClick={applyParamsToPowerSizing}
-                      className="mt-2 w-full bg-[#1E90FF]/15 border border-[#1E90FF]/40 text-[#1E90FF] hover:bg-[#1E90FF] hover:text-white rounded py-2 text-center text-xs font-mono font-bold transition flex items-center justify-center gap-1 px-2 cursor-pointer"
+                      className="mt-2 w-full bg-[#1E90FF] border border-[#1E90FF] text-white hover:bg-[#1C86EE] rounded py-2 text-center text-xs font-mono font-bold transition flex items-center justify-center gap-1 px-2 cursor-pointer"
                     >
                       Use Head in Sizing Sizer
                       <ArrowRight className="h-3.5 w-3.5" />
@@ -1249,7 +1252,7 @@ export default function App() {
               {activeTab === CalcTab.FlowRate && (
                 <div className="space-y-6">
                   <div>
-                    <span className="text-[10px] font-mono text-[#A8B8D0] uppercase tracking-wider block mb-1">
+                    <span className="text-[10px] font-mono text-[#CBDDF4] uppercase tracking-wider block mb-1">
                       Required Mass Flow Sizing Value
                     </span>
                     <div className="flex items-baseline gap-1 bg-[#0F2035] py-2 px-3 rounded border border-[#2A3F5F]/50">
@@ -1264,7 +1267,7 @@ export default function App() {
 
                   <div className="grid grid-cols-2 gap-3.5">
                     <div>
-                      <span className="text-[9px] font-mono text-[#A8B8D0] uppercase tracking-wider block mb-1">
+                      <span className="text-[9px] font-mono text-[#CBDDF4] uppercase tracking-wider block mb-1">
                         Volume Capacity
                       </span>
                       <div className="bg-[#0F2035] py-2 px-2.5 rounded border border-[#2A3F5F]/30 font-mono text-xs">
@@ -1272,7 +1275,7 @@ export default function App() {
                       </div>
                     </div>
                     <div>
-                      <span className="text-[9px] font-mono text-[#A8B8D0] uppercase tracking-wider block mb-1">
+                      <span className="text-[9px] font-mono text-[#CBDDF4] uppercase tracking-wider block mb-1">
                         Sizing GPM
                       </span>
                       <div className="bg-[#0F2035] py-2 px-2.5 rounded border border-[#2A3F5F]/30 font-mono text-xs">
@@ -1344,7 +1347,7 @@ export default function App() {
                   </div>
 
                   <div>
-                    <span className="text-[10px] font-mono text-[#A8B8D0] uppercase tracking-wider block mb-1">
+                    <span className="text-[10px] font-mono text-[#CBDDF4] uppercase tracking-wider block mb-1">
                       Fluid Net Useful Hydraulic Power
                     </span>
                     <div className="flex justify-between items-center bg-[#0F2035] py-2 px-3 rounded border border-[#2A3F5F]/45">
@@ -1358,7 +1361,7 @@ export default function App() {
                   </div>
 
                   <div>
-                    <span className="text-[10px] font-mono text-[#A8B8D0] uppercase tracking-wider block mb-1">
+                    <span className="text-[10px] font-mono text-[#CBDDF4] uppercase tracking-wider block mb-1">
                       Shaft Brake coupling Horsepower (BHP)
                     </span>
                     <div className="flex justify-between items-center bg-[#0F2035] py-2 px-3 rounded border border-[#2A3F5F]/45">
@@ -1375,11 +1378,11 @@ export default function App() {
                     <span className="text-[10px] font-mono text-[#FFB400] uppercase tracking-wider block mb-1">
                       ASME electrical motor input sizing
                     </span>
-                    <div className="flex justify-between items-center bg-[#1E90FF]/15 py-2.5 px-3 rounded-lg border border-[#1E90FF]/40">
-                      <span className="text-base font-mono font-extrabold text-[#1E90FF]">
+                    <div className="flex justify-between items-center bg-[#1E90FF] py-2.5 px-3 rounded-lg border border-[#1E90FF] shadow-sm">
+                      <span className="text-base font-mono font-extrabold text-white">
                         {powerResults.motorPowerKw} kW
                       </span>
-                      <span className="text-xs font-mono text-[#1E90FF] font-black">
+                      <span className="text-xs font-mono text-white font-black">
                         {powerResults.motorPowerHp} HP
                       </span>
                     </div>
@@ -1437,20 +1440,24 @@ export default function App() {
 
       {/* DETAILED DIAGRAMS PANEL - VISUALLY STUNNING INTEGRATION */}
       <section className="max-w-7xl mx-auto px-6 mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 no-print">
-        <SystemDiagram
-          unitSystem={unitSystem}
-          dischargePressure={Number(headInputs.dischargePressure) || 0}
-          suctionPressure={Number(headInputs.suctionPressure) || 0}
-          staticHead={Number(headInputs.staticHead) || 0}
-          frictionSuction={Number(headInputs.frictionSuction) || 0}
-          frictionDischarge={Number(headInputs.frictionDischarge) || 0}
-          velocityHead={Number(headInputs.velocityHead) || 0}
-        />
-        <PumpCurveChart
-          unitSystem={unitSystem}
-          operatingFlow={activeTab === CalcTab.Power ? (Number(powerInputs.flowRate) || 0) : (unitSystem === UnitSystem.Metric ? capacityResults.flowM3Hr : capacityResults.flowGPM)}
-          operatingHead={activeTab === CalcTab.Power ? (Number(powerInputs.totalHead) || 0) : (unitSystem === UnitSystem.Metric ? headResults.totalHeadMetric : headResults.totalHeadImperial)}
-        />
+        <Suspense fallback={<div className="bg-[#101E35] h-[350px] border border-[#2A3F5F]/40 flex items-center justify-center rounded-xl text-slate-400 text-xs">Loading System Diagram...</div>}>
+          <SystemDiagram
+            unitSystem={unitSystem}
+            dischargePressure={Number(headInputs.dischargePressure) || 0}
+            suctionPressure={Number(headInputs.suctionPressure) || 0}
+            staticHead={Number(headInputs.staticHead) || 0}
+            frictionSuction={Number(headInputs.frictionSuction) || 0}
+            frictionDischarge={Number(headInputs.frictionDischarge) || 0}
+            velocityHead={Number(headInputs.velocityHead) || 0}
+          />
+        </Suspense>
+        <Suspense fallback={<div className="bg-[#101E35] h-[350px] border border-[#2A3F5F]/40 flex items-center justify-center rounded-xl text-slate-400 text-xs">Loading Performance Curves...</div>}>
+          <PumpCurveChart
+            unitSystem={unitSystem}
+            operatingFlow={activeTab === CalcTab.Power ? (Number(powerInputs.flowRate) || 0) : (unitSystem === UnitSystem.Metric ? capacityResults.flowM3Hr : capacityResults.flowGPM)}
+            operatingHead={activeTab === CalcTab.Power ? (Number(powerInputs.totalHead) || 0) : (unitSystem === UnitSystem.Metric ? headResults.totalHeadMetric : headResults.totalHeadImperial)}
+          />
+        </Suspense>
       </section>
 
       {/* UNIFIED GORGEOUS ENGINEERING DATA SHEET (HIDDEN ON SCREEN, ONLY VISIBLE ON PRINT) */}
@@ -1939,7 +1946,7 @@ export default function App() {
               <h3 className="text-xs font-mono text-[#00C896] uppercase font-bold tracking-wider">
                 1. Mass to Volumetric Flow Conversion
               </h3>
-              <p className="text-xs text-[#A8B8D0] leading-relaxed">
+              <p className="text-xs text-[#CBDDF4] leading-relaxed">
                 Centrifugal pumps are dynamic, volumetric displacement devices, but boilers operate on mass balance. The flow conversion must correct for heat expansion:
               </p>
               <div className="bg-[#050C16] p-3 rounded font-mono text-xs text-[#1E90FF] text-center">
@@ -1951,7 +1958,7 @@ export default function App() {
               <h3 className="text-xs font-mono text-[#00C896] uppercase font-bold tracking-wider">
                 2. Power Fluid-Dynamics Model
               </h3>
-              <p className="text-xs text-[#A8B8D0] leading-relaxed">
+              <p className="text-xs text-[#CBDDF4] leading-relaxed">
                 The mechanical brake power represents the actual torque matching required shaft speeds, calculated as:
               </p>
               <div className="bg-[#050C16] p-3 rounded font-mono text-xs text-[#1E90FF] text-center">
@@ -2045,27 +2052,33 @@ export default function App() {
 
       </article>
         </>
-      ) : currentView === 'npsh-calc' ? (
-        <NpshView unitSystem={unitSystem} />
-      ) : currentView === 'power-calc' ? (
-        <PowerView unitSystem={unitSystem} />
-      ) : currentView === 'sizing-guide' ? (
-        <SizingGuideView unitSystem={unitSystem} />
-      ) : currentView === 'selection-chart' ? (
-        <SelectionChartView unitSystem={unitSystem} />
-      ) : currentView === 'about' ? (
-        <AboutView />
-      ) : currentView === 'contact' ? (
-        <ContactView />
-      ) : currentView === 'privacy' ? (
-        <LegalView sectionType="privacy" />
       ) : (
-        <LegalView sectionType="disclaimer" />
+        <Suspense fallback={<div className="max-w-7xl mx-auto px-6 py-20 text-center text-slate-300 font-mono text-xs">Loading View Module...</div>}>
+          {currentView === 'npsh-calc' ? (
+            <NpshView unitSystem={unitSystem} />
+          ) : currentView === 'power-calc' ? (
+            <PowerView unitSystem={unitSystem} />
+          ) : currentView === 'sizing-guide' ? (
+            <SizingGuideView unitSystem={unitSystem} />
+          ) : currentView === 'selection-chart' ? (
+            <SelectionChartView unitSystem={unitSystem} />
+          ) : currentView === 'about' ? (
+            <AboutView />
+          ) : currentView === 'contact' ? (
+            <ContactView />
+          ) : currentView === 'privacy' ? (
+            <LegalView sectionType="privacy" />
+          ) : (
+            <LegalView sectionType="disclaimer" />
+          )}
+        </Suspense>
       )}
 
       {/* Footer Banner Spot */}
       <div className="max-w-7xl mx-auto px-6">
-        <AdBanner />
+        <Suspense fallback={<div className="h-[90px] bg-[#101E35] border border-[#2A3F5F]/40 flex items-center justify-center rounded-lg shadow-inner text-slate-400 text-xs">Loading Sponsor Content...</div>}>
+          <AdBanner />
+        </Suspense>
       </div>
 
       {/* FOOTER */}
@@ -2085,7 +2098,7 @@ export default function App() {
               <p className="font-mono text-[9px] tracking-wide">
                 Last Updated: <span className="text-[#FFB400] font-bold">2026 Premium Edition</span>
               </p>
-              <p className="text-slate-500">
+              <p className="text-slate-400">
                 © {new Date().getFullYear()} Thermosolve Systems, LLC. All rights engineered under ASME guidelines.
               </p>
             </div>
@@ -2097,6 +2110,7 @@ export default function App() {
               href="https://github.com/zeeuskhan/boiler-feed-pump-calculation"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="View Boiler Feed Pump Calculation Source Code on GitHub"
               className="text-[#1E90FF] hover:text-[#1E90FF]/85 hover:underline transition font-medium"
             >
               View Boiler Feed Pump Calculation Source Code on GitHub

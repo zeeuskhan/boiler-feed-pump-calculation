@@ -52,6 +52,7 @@ export default function SelectionChartView({ unitSystem }: SelectionChartViewPro
         <div className="lg:col-span-4 bg-[#0B1524] border border-[#2A3F5F]/50 rounded-2xl p-5 shadow-xl space-y-5">
           <div className="flex justify-between items-center pb-3 border-b border-[#2A3F5F]/20">
             <div>
+              <h2 className="sr-only">Interactive Modeler Panel</h2>
               <h3 className="font-bold text-white text-sm">Pump Curve Modeler</h3>
               <p className="text-[10px] text-slate-400">Tweak operating specs to shift curves</p>
             </div>
@@ -72,6 +73,7 @@ export default function SelectionChartView({ unitSystem }: SelectionChartViewPro
               </div>
               <input
                 type="range"
+                aria-label="Dynamic Capacity"
                 min={isMetric ? "5" : "22"}
                 max={isMetric ? "200" : "880"}
                 value={visFlow}
@@ -87,6 +89,7 @@ export default function SelectionChartView({ unitSystem }: SelectionChartViewPro
               </div>
               <input
                 type="range"
+                aria-label="Dynamic TDH Target"
                 min={isMetric ? "20" : "65"}
                 max={isMetric ? "1100" : "3600"}
                 value={visHead}
