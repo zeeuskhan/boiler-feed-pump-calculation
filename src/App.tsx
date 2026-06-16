@@ -562,7 +562,7 @@ export default function App() {
             <div className="flex bg-[#0D1B2A] rounded border border-[#2A3F5F] p-0.5">
               <button
                 onClick={() => handleUnitToggle(UnitSystem.Metric)}
-                className={`px-2.5 py-1 rounded text-xs font-mono font-bold transition cursor-pointer ${
+                className={`px-2.5 py-1 rounded text-sm font-mono font-bold transition cursor-pointer ${
                   unitSystem === UnitSystem.Metric
                     ? 'bg-[#1E90FF] text-white'
                     : 'text-slate-400 hover:text-white'
@@ -572,7 +572,7 @@ export default function App() {
               </button>
               <button
                 onClick={() => handleUnitToggle(UnitSystem.Imperial)}
-                className={`px-2.5 py-1 rounded text-xs font-mono font-bold transition cursor-pointer ${
+                className={`px-2.5 py-1 rounded text-sm font-mono font-bold transition cursor-pointer ${
                   unitSystem === UnitSystem.Imperial
                     ? 'bg-[#FFB400] text-[#0D1B2A]'
                     : 'text-slate-400 hover:text-white'
@@ -762,6 +762,7 @@ export default function App() {
                         <input
                           type="number"
                           step="any"
+                          aria-label="Boiler Discharge Pressure (Pd)"
                           value={headInputs.dischargePressure}
                           onChange={(e) => setHeadInputs(prev => ({ ...prev, dischargePressure: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition shadow-inner"
@@ -783,6 +784,7 @@ export default function App() {
                         <input
                           type="number"
                           step="any"
+                          aria-label="Suction Tank Pressure (Ps)"
                           value={headInputs.suctionPressure}
                           onChange={(e) => setHeadInputs(prev => ({ ...prev, suctionPressure: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition"
@@ -804,6 +806,7 @@ export default function App() {
                         <input
                           type="number"
                           step="any"
+                          aria-label="Static Vertical Elevation Ascent (Hz)"
                           value={headInputs.staticHead}
                           onChange={(e) => setHeadInputs(prev => ({ ...prev, staticHead: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition"
@@ -825,6 +828,7 @@ export default function App() {
                         <input
                           type="number"
                           step="any"
+                          aria-label="Velocity Dynamic Head (ΔHv)"
                           value={headInputs.velocityHead}
                           onChange={(e) => setHeadInputs(prev => ({ ...prev, velocityHead: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition"
@@ -846,6 +850,7 @@ export default function App() {
                         <input
                           type="number"
                           step="any"
+                          aria-label="Suction Fluid Friction Drop"
                           value={headInputs.frictionSuction}
                           onChange={(e) => setHeadInputs(prev => ({ ...prev, frictionSuction: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition shadow-inner"
@@ -867,6 +872,7 @@ export default function App() {
                         <input
                           type="number"
                           step="any"
+                          aria-label="Discharge Pipeline Friction Drop"
                           value={headInputs.frictionDischarge}
                           onChange={(e) => setHeadInputs(prev => ({ ...prev, frictionDischarge: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition shadow-inner"
@@ -889,6 +895,7 @@ export default function App() {
                           type="number"
                           max="40"
                           min="0"
+                          aria-label="Sizing Safety Buffer (%)"
                           value={headInputs.safetyFactor}
                           onChange={(e) => setHeadInputs(prev => ({ ...prev, safetyFactor: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition"
@@ -917,6 +924,7 @@ export default function App() {
                         <input
                           type="number"
                           step="any"
+                          aria-label="Boiler Steam Evaporation capacity (MCR)"
                           value={capacityInputs.boilerCapacity}
                           onChange={(e) => setCapacityInputs(prev => ({ ...prev, boilerCapacity: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition shadow-inner"
@@ -940,6 +948,7 @@ export default function App() {
                           max="25"
                           min="0"
                           step="any"
+                          aria-label="Boiler Blowdown Purge Ratio (%)"
                           value={capacityInputs.blowdownRate}
                           onChange={(e) => setCapacityInputs(prev => ({ ...prev, blowdownRate: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition shadow-inner"
@@ -962,6 +971,7 @@ export default function App() {
                           type="number"
                           max="50"
                           min="0"
+                          aria-label="Evaporation Safety Factor (%)"
                           value={capacityInputs.safetyFactor}
                           onChange={(e) => setCapacityInputs(prev => ({ ...prev, safetyFactor: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition shadow-inner"
@@ -983,6 +993,7 @@ export default function App() {
                         <input
                           type="number"
                           step="any"
+                          aria-label="Feedwater Stream Temperature"
                           value={capacityInputs.feedwaterTemp}
                           onChange={(e) => setCapacityInputs(prev => ({ ...prev, feedwaterTemp: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition"
@@ -1011,6 +1022,7 @@ export default function App() {
                         <input
                           type="number"
                           step="any"
+                          aria-label="Design System Feed Flow Rate"
                           value={powerInputs.flowRate}
                           onChange={(e) => setPowerInputs(prev => ({ ...prev, flowRate: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition shadow-inner"
@@ -1032,6 +1044,7 @@ export default function App() {
                         <input
                           type="number"
                           step="any"
+                          aria-label="Total Sizing Dynamic Head (TDH)"
                           value={powerInputs.totalHead}
                           onChange={(e) => setPowerInputs(prev => ({ ...prev, totalHead: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition shadow-inner"
@@ -1053,6 +1066,7 @@ export default function App() {
                         <input
                           type="number"
                           step="any"
+                          aria-label="Water Density at Temperature"
                           value={powerInputs.fluidDensity}
                           onChange={(e) => setPowerInputs(prev => ({ ...prev, fluidDensity: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition shadow-inner"
@@ -1076,6 +1090,7 @@ export default function App() {
                           max="100"
                           min="1"
                           step="any"
+                          aria-label="Pump Hydraulic Efficiency (%)"
                           value={powerInputs.pumpEfficiency}
                           onChange={(e) => setPowerInputs(prev => ({ ...prev, pumpEfficiency: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-3 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition"
@@ -1097,6 +1112,7 @@ export default function App() {
                         <input
                           type="number"
                           step="any"
+                          aria-label="Local Power tariff cost (Rate)"
                           value={powerInputs.powerRateCustom}
                           onChange={(e) => setPowerInputs(prev => ({ ...prev, powerRateCustom: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-4 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#FFB400] transition"
@@ -1118,6 +1134,7 @@ export default function App() {
                         <input
                           type="number"
                           step="any"
+                          aria-label="Driver Induction Motor RPM"
                           value={powerInputs.motorRPM}
                           onChange={(e) => setPowerInputs(prev => ({ ...prev, motorRPM: parseNumInput(e.target.value) }))}
                           className="w-full bg-[#0F2035] border border-[#2A3F5F] rounded-lg py-4 px-4 text-white font-mono text-sm focus:outline-none focus:border-[#1E90FF] transition"
@@ -1177,10 +1194,10 @@ export default function App() {
             </div>
 
             <div className="bg-[#0D1B2A] py-4 px-5 border-b border-[#2A3F5F] flex justify-between items-center">
-              <h3 className="text-sm font-mono font-bold tracking-wider text-slate-100 uppercase flex items-center gap-2">
+              <h2 className="text-sm font-mono font-bold tracking-wider text-slate-100 uppercase flex items-center gap-2">
                 <Sliders className="h-4 w-4 text-[#FFB400]" />
                 Thermosolve Panel
-              </h3>
+              </h2>
               <span className="text-[9px] font-mono bg-[#1E90FF] border border-[#1E90FF] text-white py-0.5 px-2 rounded-full font-bold">
                 PRO ACTIVE
               </span>
@@ -1239,7 +1256,7 @@ export default function App() {
                     <button
                       type="button"
                       onClick={applyParamsToPowerSizing}
-                      className="mt-2 w-full bg-[#1E90FF] border border-[#1E90FF] text-white hover:bg-[#1C86EE] rounded py-2 text-center text-xs font-mono font-bold transition flex items-center justify-center gap-1 px-2 cursor-pointer"
+                      className="mt-2 w-full bg-[#1E90FF] border border-[#1E90FF] text-white hover:bg-[#1C86EE] rounded py-2 text-center text-sm font-mono font-bold transition flex items-center justify-center gap-1 px-2 cursor-pointer"
                     >
                       Use Head in Sizing Sizer
                       <ArrowRight className="h-3.5 w-3.5" />
@@ -1401,7 +1418,7 @@ export default function App() {
               <div className="mt-6 pt-5 border-t border-[#2A3F5F] space-y-3.5">
                 <button
                   onClick={handleCopy}
-                  className="w-full bg-[#1E90FF] hover:bg-[#1E90FF]/90 text-white font-mono text-xs font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-1.5 transition cursor-pointer select-none active:scale-95"
+                  className="w-full bg-[#1E90FF] hover:bg-[#1E90FF]/90 text-white font-mono text-sm font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-1.5 transition cursor-pointer select-none active:scale-95"
                 >
                   {copied ? (
                     <>
@@ -1928,7 +1945,7 @@ export default function App() {
             </p>
             <button
               onClick={handlePrint}
-              className="px-4 py-2 bg-[#1E90FF] hover:bg-[#1E90FF]/85 text-white rounded-lg text-xs font-mono font-bold flex items-center gap-2 transition shadow-lg cursor-pointer shrink-0"
+              className="px-4 py-2 bg-[#1E90FF] hover:bg-[#1E90FF]/85 text-white rounded-lg text-sm font-mono font-bold flex items-center gap-2 transition shadow-lg cursor-pointer shrink-0"
             >
               <Printer className="h-3 w-3" /> Print PDF Checklist
             </button>
